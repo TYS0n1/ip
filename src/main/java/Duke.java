@@ -192,7 +192,6 @@ public class Duke {
 
         String input = "empty";
         Scanner in = new Scanner(System.in);
-
         boolean isRunning = true;
 
         while(isRunning == true){
