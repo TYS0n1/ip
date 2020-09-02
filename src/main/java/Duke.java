@@ -96,7 +96,7 @@ public class Duke {
         }
     }
 
-    public static void printMessagae(String message){
+    public static void printMessage(String message){
         System.out.println("____________________________________________________________");
         if(message.equals("bye")){
             System.out.println(" Bye. Hope to see you again soon!");
@@ -120,7 +120,7 @@ public class Duke {
     public static void printDoneStatement(Task taskObject){
         String outputMessage = " Nice! I've marked this task as done: \n" +
                  "   " + taskObject.toString();
-        printMessagae(outputMessage);
+        printMessage(outputMessage);
     }
 
     public static void DoneOperation(String input){
@@ -130,7 +130,7 @@ public class Duke {
             listInputs[taskNumber].setIsDone(true);
             printDoneStatement(listInputs[taskNumber]);
         }else{
-            printMessagae(" Invalid task number");
+            printMessage(" Invalid task number");
         }
     }
 
@@ -138,7 +138,7 @@ public class Duke {
         String outputMessage = " Got it. I've added this task: \n" + "   " +
                 listInputs[taskIndex].toString() + "\n" +
                 " Now you have " + Integer.toString(listPosition + 1) + " tasks in the list.";
-        printMessagae(outputMessage);
+        printMessage(outputMessage);
     }
 
     public static void TodoOperation(String input){
@@ -151,7 +151,7 @@ public class Duke {
     public static void DeadlineOperation(String input){
         input = input.substring(9, input.length());
         if(input.startsWith("/by") == true || input.contains(" /by ") == false){
-            printMessagae(" Invalid deadline declaration\ndeadline {info} /by {date}");
+            printMessage(" Invalid deadline declaration\ndeadline {info} /by {date}");
             return;
         }
 
@@ -166,7 +166,7 @@ public class Duke {
     public static void EventOperation(String input){
         input = input.substring(6, input.length());
         if(input.startsWith("/at") == true || input.contains(" /at ") == false){
-            printMessagae(" Invalid event declaration\nevent {info} /by {date} {time}");
+            printMessage(" Invalid event declaration\nevent {info} /by {date} {time}");
             return;
         }
 
@@ -197,7 +197,7 @@ public class Duke {
         while(isRunning == true){
             input = in.nextLine();
             if(input.equals("bye")) {
-                printMessagae(input);
+                printMessage(input);
                 isRunning = false;
             }else if (input.equals("list")){
                 printList(listInputs, listPosition);
@@ -210,7 +210,7 @@ public class Duke {
             }else if(input.startsWith("event ") == true) {
                 EventOperation(input);
             }else {
-                printMessagae(" added: " + input);
+                printMessage(" added: " + input);
                 listInputs[listPosition] = new Task(input, false);
                 listPosition++;
             }
