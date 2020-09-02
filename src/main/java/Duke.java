@@ -123,7 +123,7 @@ public class Duke {
         printMessage(outputMessage);
     }
 
-    public static void DoneOperation(String input){
+    public static void doneOperation(String input){
         // Operation fails if input is not a number, add exception later
         int taskNumber = Integer.parseInt(input.substring(5, input.length())) - 1;
         if(taskNumber < listPosition && taskNumber >= 0){
@@ -141,14 +141,14 @@ public class Duke {
         printMessage(outputMessage);
     }
 
-    public static void TodoOperation(String input){
+    public static void todoOperation(String input){
         String todoData = input.substring(5, input.length());
         listInputs[listPosition] = new Todo(todoData, false);
         printAddedTaskMessage(listPosition);
         listPosition++;
     }
 
-    public static void DeadlineOperation(String input){
+    public static void deadlineOperation(String input){
         input = input.substring(9, input.length());
         if(input.startsWith("/by") == true || input.contains(" /by ") == false){
             printMessage(" Invalid deadline declaration\ndeadline {info} /by {date}");
@@ -163,7 +163,7 @@ public class Duke {
         listPosition++;
     }
 
-    public static void EventOperation(String input){
+    public static void eventOperation(String input){
         input = input.substring(6, input.length());
         if(input.startsWith("/at") == true || input.contains(" /at ") == false){
             printMessage(" Invalid event declaration\nevent {info} /by {date} {time}");
@@ -202,13 +202,13 @@ public class Duke {
             }else if (input.equals("list")){
                 printList(listInputs, listPosition);
             }else if(input.startsWith("done ") == true) {
-                DoneOperation(input);
+                doneOperation(input);
             }else if(input.startsWith("todo ") == true) {
-                TodoOperation(input);
+                todoOperation(input);
             }else if(input.startsWith("deadline ") == true) {
-                DeadlineOperation(input);
+                deadlineOperation(input);
             }else if(input.startsWith("event ") == true) {
-                EventOperation(input);
+                eventOperation(input);
             }else {
                 printMessage(" added: " + input);
                 listInputs[listPosition] = new Task(input, false);

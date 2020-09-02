@@ -10,20 +10,29 @@ ____________________________________________________________
  What can I do for you?
 ____________________________________________________________
 ____________________________________________________________
- Here are the tasks in your list:
-____________________________________________________________
-____________________________________________________________
  Got it. I've added this task: 
-   [T][✗] borrow book
+   [T][✗] Answer CS2113 tutorial questions
  Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task: 
-   [D][✗] return book (by: sunday)
+   [E][✗] CS2113 tutorial (at: 2nd sep 11am)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task: 
-   [E][✗] prject meeting (at: mon 2-4pm)
+   [D][✗] Submit TP direction on Teammates (by: now)
  Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task: 
+   [T][✗] Complete code review
+ Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Here are the tasks in your list:
+ 1.[T][✗] Answer CS2113 tutorial questions
+ 2.[E][✗] CS2113 tutorial (at: 2nd sep 11am)
+ 3.[D][✗] Submit TP direction on Teammates (by: now)
+ 4.[T][✗] Complete code review
 ____________________________________________________________
