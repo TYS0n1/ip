@@ -147,6 +147,7 @@ public class Duke {
             return;
         }else if(input.length() == 5){
             printMessage(EMPTY_DONE_INPUT_MESSAGE);
+            return;
         }
 
         try{
@@ -174,6 +175,7 @@ public class Duke {
     public static void todoOperation(String input){
         if(input.length() == 5){
             printMessage(EMPTY_TODO_INPUT_MESSAGE);
+            return;
         }
 
         String todoData = input.substring(5, input.length());
@@ -185,6 +187,7 @@ public class Duke {
     public static void deadlineOperation(String input){
         if(input.length() == 9){
             printMessage(EMPTY_DEADLINE_INPUT_MESSAGE);
+            return;
         }
 
         input = input.substring(9, input.length());
@@ -204,6 +207,7 @@ public class Duke {
     public static void eventOperation(String input){
         if(input.length() == 6){
             printMessage(EMPTY_EVENT_INPUT_MESSAGE);
+            return;
         }
 
         input = input.substring(6, input.length());
