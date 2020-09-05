@@ -19,29 +19,23 @@ public class Duke {
     private static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
             " " + "event {info} /by {date} {time}";
     private static final String INVALID_INPUT_MAIN_MESSAGE =
-            " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-    private static final String EMPTY_DONE_INPUT_MESSAGE = "☹ OOPS!!! The description of a done cannot be empty.";
-    private static final String EMPTY_TODO_INPUT_MESSAGE = "☹ OOPS!!! The description of a todo cannot be empty.";
+            " " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String EMPTY_DONE_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a done cannot be empty.";
+    private static final String EMPTY_TODO_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a todo cannot be empty.";
     private static final String EMPTY_DEADLINE_INPUT_MESSAGE =
-            "☹ OOPS!!! The description of a deadline cannot be empty.";
+            " " + "☹ OOPS!!! The description of a deadline cannot be empty.";
     private static final String EMPTY_EVENT_INPUT_MESSAGE =
-            "☹ OOPS!!! The description of a event cannot be empty.";
+            " " + "☹ OOPS!!! The description of a event cannot be empty.";
 
     public static void printMessage(String message){
         System.out.println("____________________________________________________________");
-        if(message.equals("bye")){
-            System.out.println(" Bye. Hope to see you again soon!");
-        }else{
-            System.out.printf("%s", message);
-            System.out.println();
-        }
-
+        System.out.println(message);
         System.out.println("____________________________________________________________");
     }
 
     public static void printList(Task[] list, int listLength){
         System.out.println("____________________________________________________________");
-        System.out.println(" Here are the tasks in your list:");
+        System.out.println(LIST_HEADER_MESSAGE);
         for(int i = 0; i < listLength; i++){
             System.out.printf(" %d.%s\n", i + 1, list[i].toString());
         }
@@ -49,7 +43,7 @@ public class Duke {
     }
 
     public static void printDoneStatement(Task taskObject){
-        String outputMessage = " Nice! I've marked this task as done: \n" +
+        String outputMessage = DONE_HEADER_MESSAGE + "\n" +
                 "   " + taskObject.toString();
         printMessage(outputMessage);
     }
@@ -167,7 +161,7 @@ public class Duke {
         while(isRunning == true){
             input = in.nextLine();
             if(input.equals("bye")) {
-                printMessage(input);
+                printMessage(BYE_MESSAGE);
                 isRunning = false;
             }else if (input.equals("list")){
                 printList(listInputs, listPosition);

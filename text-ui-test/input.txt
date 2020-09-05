@@ -1,5 +1,5 @@
-todo Answer CS2113 tutorial questions
-event CS2113 tutorial /at 2nd sep 11am
-deadline Submit TP direction on Teammates /by now
-todo Complete code review
-list
+todo 
+deadline 
+event 
+done 
+bye
