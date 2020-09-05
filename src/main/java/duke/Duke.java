@@ -1,6 +1,9 @@
+package duke;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
+import duke.task.*;
 
 
 
@@ -24,7 +27,7 @@ public class Duke {
     private static final String EMPTY_EVENT_INPUT_MESSAGE =
             "☹ OOPS!!! The description of a event cannot be empty.";
 
-    public static class Task{
+    /*public static class Task{
         private String data;
         private boolean isDone;
         private int taskNumber;
@@ -112,7 +115,7 @@ public class Duke {
                 return String.format("[E][✗] %s (at: %s)", getData(), getDateDue());
             }
         }
-    }
+    }*/
 
     public static void printMessage(String message){
         System.out.println("____________________________________________________________");
