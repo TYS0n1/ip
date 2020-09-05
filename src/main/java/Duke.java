@@ -2,9 +2,19 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+
 public class Duke {
     static Task[] listInputs = new Task[100];
     static int listPosition = 0;
+
+    private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
+    private static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
+    private static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
+    private static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
+            " " + "deadline {info} /by {date}";
+    private static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
+            " " + "event {info} /by {date} {time}";
 
     public static class Task{
         private String data;
@@ -99,7 +109,7 @@ public class Duke {
     public static void printMessage(String message){
         System.out.println("____________________________________________________________");
         if(message.equals("bye")){
-            System.out.println(" Bye. Hope to see you again soon!");
+            System.out.println(BYE_MESSAGE);
         }else{
             System.out.printf("%s", message);
             System.out.println();
@@ -110,7 +120,7 @@ public class Duke {
 
     public static void printList(Task[] list, int listLength){
         System.out.println("____________________________________________________________");
-        System.out.println(" Here are the tasks in your list:");
+        System.out.println(LIST_HEADER_MESSAGE);
         for(int i = 0; i < listLength; i++){
             System.out.printf(" %d.%s\n", i + 1, list[i].toString());
         }
@@ -118,19 +128,29 @@ public class Duke {
     }
 
     public static void printDoneStatement(Task taskObject){
-        String outputMessage = " Nice! I've marked this task as done: \n" +
+        String outputMessage = DONE_HEADER_MESSAGE + "\n" +
                  "   " + taskObject.toString();
         printMessage(outputMessage);
     }
 
     public static void doneOperation(String input){
-        // Operation fails if input is not a number, add exception later
-        int taskNumber = Integer.parseInt(input.substring(5, input.length())) - 1;
-        if(taskNumber < listPosition && taskNumber >= 0){
-            listInputs[taskNumber].setIsDone(true);
-            printDoneStatement(listInputs[taskNumber]);
-        }else{
-            printMessage(" Invalid task number");
+        if(listPosition == 0){
+            printMessage(" List is empty");
+            return;
+        }
+
+        try{
+            int taskNumber = Integer.parseInt(input.substring(5, input.length())) - 1;
+            if(taskNumber < listPosition && taskNumber >= 0){
+                listInputs[taskNumber].setIsDone(true);
+                printDoneStatement(listInputs[taskNumber]);
+            }else{
+                printMessage(" Invalid task number\n " +
+                    "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
+            }
+        }catch(NumberFormatException e){
+            printMessage(" Invalid index for done operation\n " +
+                    "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
         }
     }
 
@@ -151,7 +171,7 @@ public class Duke {
     public static void deadlineOperation(String input){
         input = input.substring(9, input.length());
         if(input.startsWith("/by") == true || input.contains(" /by ") == false){
-            printMessage(" Invalid deadline declaration\ndeadline {info} /by {date}");
+            printMessage(DEADLINE_FORMAT_MESSAGE);
             return;
         }
 
@@ -166,7 +186,7 @@ public class Duke {
     public static void eventOperation(String input){
         input = input.substring(6, input.length());
         if(input.startsWith("/at") == true || input.contains(" /at ") == false){
-            printMessage(" Invalid event declaration\nevent {info} /by {date} {time}");
+            printMessage(EVENT_FORMAT_MESSAGE);
             return;
         }
 
