@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//changes 1
+
 
 public class Duke {
     static Task[] listInputs = new Task[100];
@@ -15,6 +15,14 @@ public class Duke {
             " " + "deadline {info} /by {date}";
     private static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
             " " + "event {info} /by {date} {time}";
+    private static final String INVALID_INPUT_MAIN_MESSAGE =
+            " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String EMPTY_DONE_INPUT_MESSAGE = "☹ OOPS!!! The description of a done cannot be empty.";
+    private static final String EMPTY_TODO_INPUT_MESSAGE = "☹ OOPS!!! The description of a todo cannot be empty.";
+    private static final String EMPTY_DEADLINE_INPUT_MESSAGE =
+            "☹ OOPS!!! The description of a deadline cannot be empty.";
+    private static final String EMPTY_EVENT_INPUT_MESSAGE =
+            "☹ OOPS!!! The description of a event cannot be empty.";
 
     public static class Task{
         private String data;
@@ -109,7 +117,7 @@ public class Duke {
     public static void printMessage(String message){
         System.out.println("____________________________________________________________");
         if(message.equals("bye")){
-            System.out.println(BYE_MESSAGE);
+            System.out.println(" Bye. Hope to see you again soon!");
         }else{
             System.out.printf("%s", message);
             System.out.println();
@@ -120,7 +128,7 @@ public class Duke {
 
     public static void printList(Task[] list, int listLength){
         System.out.println("____________________________________________________________");
-        System.out.println(LIST_HEADER_MESSAGE);
+        System.out.println(" Here are the tasks in your list:");
         for(int i = 0; i < listLength; i++){
             System.out.printf(" %d.%s\n", i + 1, list[i].toString());
         }
@@ -128,8 +136,8 @@ public class Duke {
     }
 
     public static void printDoneStatement(Task taskObject){
-        String outputMessage = DONE_HEADER_MESSAGE + "\n" +
-                 "   " + taskObject.toString();
+        String outputMessage = " Nice! I've marked this task as done: \n" +
+                "   " + taskObject.toString();
         printMessage(outputMessage);
     }
 
@@ -137,6 +145,8 @@ public class Duke {
         if(listPosition == 0){
             printMessage(" List is empty");
             return;
+        }else if(input.length() == 5){
+            printMessage(EMPTY_DONE_INPUT_MESSAGE);
         }
 
         try{
@@ -146,7 +156,7 @@ public class Duke {
                 printDoneStatement(listInputs[taskNumber]);
             }else{
                 printMessage(" Invalid task number\n " +
-                    "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
+                        "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
             }
         }catch(NumberFormatException e){
             printMessage(" Invalid index for done operation\n " +
@@ -162,6 +172,10 @@ public class Duke {
     }
 
     public static void todoOperation(String input){
+        if(input.length() == 5){
+            printMessage(EMPTY_TODO_INPUT_MESSAGE);
+        }
+
         String todoData = input.substring(5, input.length());
         listInputs[listPosition] = new Todo(todoData, false);
         printAddedTaskMessage(listPosition);
@@ -169,6 +183,10 @@ public class Duke {
     }
 
     public static void deadlineOperation(String input){
+        if(input.length() == 9){
+            printMessage(EMPTY_DEADLINE_INPUT_MESSAGE);
+        }
+
         input = input.substring(9, input.length());
         if(input.startsWith("/by") == true || input.contains(" /by ") == false){
             printMessage(DEADLINE_FORMAT_MESSAGE);
@@ -184,6 +202,10 @@ public class Duke {
     }
 
     public static void eventOperation(String input){
+        if(input.length() == 6){
+            printMessage(EMPTY_EVENT_INPUT_MESSAGE);
+        }
+
         input = input.substring(6, input.length());
         if(input.startsWith("/at") == true || input.contains(" /at ") == false){
             printMessage(EVENT_FORMAT_MESSAGE);
@@ -214,6 +236,17 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         boolean isRunning = true;
 
+        /**
+         * Special condition for each commands done, todo, deadline, event.
+         * Each command are required to have a space after the command to identify itself to not cause
+         * conflict with other commands with similar names.
+         * For example, current "event" command creates a event object and adds it to the list. However, if
+         * required in the future to create a "events" command to return all events on the list, "event"
+         * command would be triggered instead of "events" due to sequential code. A space would differentiate
+         * commands of similar naming.
+         * A temporary check for these commands without spacing is implemented in case of conflict with
+         * marking rubric or algorithm.
+         */
         while(isRunning == true){
             input = in.nextLine();
             if(input.equals("bye")) {
@@ -229,10 +262,11 @@ public class Duke {
                 deadlineOperation(input);
             }else if(input.startsWith("event ") == true) {
                 eventOperation(input);
+            }else if(input.equals("done") || input.equals("todo") ||
+                    input.equals("deadline") || input.equals("event")) {
+                printMessage(" ☹ OOPS!!! The description of a " + input + " cannot be empty.");
             }else {
-                printMessage(" added: " + input);
-                listInputs[listPosition] = new Task(input, false);
-                listPosition++;
+                printMessage(INVALID_INPUT_MAIN_MESSAGE);
             }
         }
     }
