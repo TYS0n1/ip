@@ -6,11 +6,16 @@ import java.util.Scanner;
 import duke.task.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Duke {
     static ArrayList<Task> listInputs = new ArrayList<>();
+    public static String listPath = "/src/main/java/taskList.txt";
+    public static boolean isPrintMessageEnabled = true;
     //static int listPosition = 0;
 
     private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
@@ -29,7 +34,14 @@ public class Duke {
     private static final String EMPTY_EVENT_INPUT_MESSAGE =
             " " + "☹ OOPS!!! The description of a event cannot be empty.";
 
+    private static final String VALID_INDEX_RANGE =
+            "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";
+
     public static void printMessage(String message){
+        if(isPrintMessageEnabled == false){
+            return;
+        }
+
         System.out.println("____________________________________________________________");
         System.out.println(message);
         System.out.println("____________________________________________________________");
@@ -66,11 +78,11 @@ public class Duke {
                 printDoneStatement(listInputs.get(taskNumber));
             }else{
                 printMessage(" Invalid task number\n " +
-                        "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
+                        "done " + VALID_INDEX_RANGE);
             }
         }catch(NumberFormatException e){
             printMessage(" Invalid index for done operation\n " +
-                    "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
+                    "done " + VALID_INDEX_RANGE);
         }
     }
 
@@ -81,7 +93,7 @@ public class Duke {
         printMessage(outputMessage);
     }
 
-    public static void todoOperation(String input){
+    public static void todoOperation(String input, int mode){
         if(input.length() == 5){
             printMessage(EMPTY_TODO_INPUT_MESSAGE);
             return;
@@ -94,7 +106,7 @@ public class Duke {
     }
 
 
-    public static void deadlineOperation(String input){
+    public static void deadlineOperation(String input, int mode){
         if(input.length() == 9){
             printMessage(EMPTY_DEADLINE_INPUT_MESSAGE);
             return;
@@ -114,7 +126,7 @@ public class Duke {
         printAddedTaskMessage(indexAdded);
     }
 
-    public static void eventOperation(String input){
+    public static void eventOperation(String input, int mode){
         if(input.length() == 6){
             printMessage(EMPTY_EVENT_INPUT_MESSAGE);
             return;
@@ -134,7 +146,97 @@ public class Duke {
         printAddedTaskMessage(indexAdded);
     }
 
+    public static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter writer = new FileWriter(filePath);
+        writer.write(textToAdd);
+        writer.close();
+    }
+
+    public static void fileToList(String filePath) throws FileNotFoundException {
+        File file = new File(filePath); // create a File for the given file path
+        Scanner output = new Scanner(file); // create a Scanner using the File as the source
+        String line;
+        while (output.hasNext()) {
+            line = output.nextLine();
+            //System.out.println(line);
+            addNewTask(line);
+        }
+    }
+
+    public static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter writer = new FileWriter(filePath, true);
+        writer.write(textToAppend);
+        writer.close();
+    }
+
+    public static void createNewFile(String filePath){
+        try{
+            File newFile = new File(filePath);
+            if(newFile.createNewFile() == true){
+                System.out.println("A new file created");
+            }
+        }catch(IOException e) {
+            System.out.println("An error occurred.");
+        }
+    }
+
+    public static void getList(String taskListPath){
+        isPrintMessageEnabled = false;
+        try {
+            fileToList(taskListPath);
+        } catch (FileNotFoundException e) {
+            createNewFile(taskListPath);
+        }finally{
+            isPrintMessageEnabled = true;
+        }
+    }
+
+    public static void addNewTask(String input){
+        if(input.length() <= 8){
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputHeader = input.substring(0, 2);
+        if(inputHeader.equals("T ") == true || inputHeader.equals("D ") == true ||
+                inputHeader.equals("E ") == true){
+            //Successful reading of data
+        }else{
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputDoneData = input.substring(2, 8);
+        if(inputDoneData.equals("| 1 | ") == true || inputDoneData.equals("| 0 | ") == true){
+            //Successful reading of data
+        }else{
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputData = input.substring(8, input.length());
+
+        if(input.startsWith("T ") == true) {
+            todoOperation("todo " + inputData, 1);
+        }else if(input.startsWith("D ") == true) {
+            deadlineOperation("deadline " + inputData, 1);
+        }else if(input.startsWith("E ") == true) {
+            eventOperation("event " + inputData, 1);
+        }else{
+            System.out.println("Invalid task read.");
+        }
+
+        if(inputDoneData.contains("1")){
+            listInputs.get(listInputs.size() - 1).setIsDone(true);
+        }
+
+    }
+
     public static void main(String[] args) {
+        String currentWorkingDir = System.getProperty("user.dir");
+        listPath = currentWorkingDir + listPath;
+        getList(listPath);
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -171,11 +273,11 @@ public class Duke {
             }else if(input.startsWith("done ") == true) {
                 doneOperation(input);
             }else if(input.startsWith("todo ") == true) {
-                todoOperation(input);
+                todoOperation(input, 0);
             }else if(input.startsWith("deadline ") == true) {
-                deadlineOperation(input);
+                deadlineOperation(input, 0);
             }else if(input.startsWith("event ") == true) {
-                eventOperation(input);
+                eventOperation(input, 0);
             }else if(input.equals("done") || input.equals("todo") ||
                     input.equals("deadline") || input.equals("event")) {
                 printMessage(" ☹ OOPS!!! The description of a " + input + " cannot be empty.");
