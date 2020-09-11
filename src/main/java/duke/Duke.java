@@ -28,6 +28,11 @@ public class Duke {
             " " + "☹ OOPS!!! The description of a deadline cannot be empty.";
     private static final String EMPTY_EVENT_INPUT_MESSAGE =
             " " + "☹ OOPS!!! The description of a event cannot be empty.";
+    private static final String EMPTY_DELETE_INPUT_MESSAGE =
+            " " + "☹ OOPS!!! The description of a delete cannot be empty.";
+
+    private static final String VALID_INDEX_RANGE =
+            "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";
 
     public static void printMessage(String message){
         System.out.println("____________________________________________________________");
@@ -66,11 +71,11 @@ public class Duke {
                 printDoneStatement(listInputs.get(taskNumber));
             }else{
                 printMessage(" Invalid task number\n " +
-                        "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
+                        "done " + VALID_INDEX_RANGE);
             }
         }catch(NumberFormatException e){
             printMessage(" Invalid index for done operation\n " +
-                    "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
+                    "done " + VALID_INDEX_RANGE);
         }
     }
 
@@ -134,6 +139,39 @@ public class Duke {
         printAddedTaskMessage(indexAdded);
     }
 
+    public static void deleteOperation(String input){
+        if(listInputs.size() == 0){
+            printMessage(" List is empty");
+            return;
+        }else if(input.length() == 7){
+            printMessage(EMPTY_DELETE_INPUT_MESSAGE);
+            return;
+        }
+
+        try{
+            int taskNumber = Integer.parseInt(input.substring(7, input.length())) - 1;
+            if(taskNumber < listInputs.size() && taskNumber >= 0){
+                String taskData = listInputs.get(taskNumber).toString();
+                listInputs.remove(taskNumber);
+                printDeleteStatement(taskData);
+            }else{
+                printMessage(" Invalid task number\n " +
+                        "delete " + VALID_INDEX_RANGE);
+            }
+        }catch(NumberFormatException e){
+            printMessage(" Invalid index for delete operation\n " +
+                    "delete " + VALID_INDEX_RANGE);
+        }
+
+    }
+
+    public static void printDeleteStatement(String data){
+        String outputMessage = " Noted. I've removed this task: \n" + "   " +
+                data + "\n" +
+                " Now you have " + Integer.toString(listInputs.size()) + " tasks in the list.";
+        printMessage(outputMessage);
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -176,8 +214,11 @@ public class Duke {
                 deadlineOperation(input);
             }else if(input.startsWith("event ") == true) {
                 eventOperation(input);
+            }else if(input.startsWith("delete ") == true) {
+                deleteOperation(input);
             }else if(input.equals("done") || input.equals("todo") ||
-                    input.equals("deadline") || input.equals("event")) {
+                    input.equals("deadline") || input.equals("event") ||
+                    input.equals("delete")) {
                 printMessage(" ☹ OOPS!!! The description of a " + input + " cannot be empty.");
             }else {
                 printMessage(INVALID_INPUT_MAIN_MESSAGE);
