@@ -4,12 +4,14 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 import duke.task.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 
 public class Duke {
-    static Task[] listInputs = new Task[100];
-    static int listPosition = 0;
+    static ArrayList<Task> listInputs = new ArrayList<>();
+    //static int listPosition = 0;
 
     private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
     private static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
@@ -33,11 +35,11 @@ public class Duke {
         System.out.println("____________________________________________________________");
     }
 
-    public static void printList(Task[] list, int listLength){
+    public static void printList(){
         System.out.println("____________________________________________________________");
         System.out.println(LIST_HEADER_MESSAGE);
-        for(int i = 0; i < listLength; i++){
-            System.out.printf(" %d.%s\n", i + 1, list[i].toString());
+        for(int i = 0; i < listInputs.size(); i++){
+            System.out.printf(" %d.%s\n", i + 1, listInputs.get(i).toString());
         }
         System.out.println("____________________________________________________________");
     }
@@ -49,7 +51,7 @@ public class Duke {
     }
 
     public static void doneOperation(String input){
-        if(listPosition == 0){
+        if(listInputs.size() == 0){
             printMessage(" List is empty");
             return;
         }else if(input.length() == 5){
@@ -59,23 +61,23 @@ public class Duke {
 
         try{
             int taskNumber = Integer.parseInt(input.substring(5, input.length())) - 1;
-            if(taskNumber < listPosition && taskNumber >= 0){
-                listInputs[taskNumber].setIsDone(true);
-                printDoneStatement(listInputs[taskNumber]);
+            if(taskNumber < listInputs.size() && taskNumber >= 0){
+                listInputs.get(taskNumber).setIsDone(true);
+                printDoneStatement(listInputs.get(taskNumber));
             }else{
                 printMessage(" Invalid task number\n " +
-                        "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
+                        "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
             }
         }catch(NumberFormatException e){
             printMessage(" Invalid index for done operation\n " +
-                    "done {valid index from 1 to " + Integer.toString(listPosition) + "}");
+                    "done {valid index from 1 to " + Integer.toString(listInputs.size()) + "}");
         }
     }
 
     public static void printAddedTaskMessage(int taskIndex){
         String outputMessage = " Got it. I've added this task: \n" + "   " +
-                listInputs[taskIndex].toString() + "\n" +
-                " Now you have " + Integer.toString(listPosition + 1) + " tasks in the list.";
+                listInputs.get(taskIndex).toString() + "\n" +
+                " Now you have " + Integer.toString(listInputs.size()) + " tasks in the list.";
         printMessage(outputMessage);
     }
 
@@ -85,11 +87,12 @@ public class Duke {
             return;
         }
 
+        int indexAdded = listInputs.size();
         String todoData = input.substring(5, input.length());
-        listInputs[listPosition] = new Todo(todoData, false);
-        printAddedTaskMessage(listPosition);
-        listPosition++;
+        listInputs.add(new Todo(todoData, false));
+        printAddedTaskMessage(indexAdded);
     }
+
 
     public static void deadlineOperation(String input){
         if(input.length() == 9){
@@ -103,12 +106,12 @@ public class Duke {
             return;
         }
 
-        int serperatorIndex = input.indexOf(" /by ");
-        String data = input.substring(0, serperatorIndex);
-        String date = input.substring(serperatorIndex + 5, input.length());
-        listInputs[listPosition] = new Deadline(data, false, date);
-        printAddedTaskMessage(listPosition);
-        listPosition++;
+        int indexAdded = listInputs.size();
+        int separatorIndex = input.indexOf(" /by ");
+        String data = input.substring(0, separatorIndex);
+        String date = input.substring(separatorIndex + 5, input.length());
+        listInputs.add(new Deadline(data, false, date));
+        printAddedTaskMessage(indexAdded);
     }
 
     public static void eventOperation(String input){
@@ -123,12 +126,12 @@ public class Duke {
             return;
         }
 
-        int serperatorIndex = input.indexOf(" /at ");
-        String data = input.substring(0, serperatorIndex);
-        String dateAndTime = input.substring(serperatorIndex + 5, input.length());
-        listInputs[listPosition] = new Event(data, false, dateAndTime);
-        printAddedTaskMessage(listPosition);
-        listPosition++;
+        int indexAdded = listInputs.size();
+        int separatorIndex = input.indexOf(" /at ");
+        String data = input.substring(0, separatorIndex);
+        String dateAndTime = input.substring(separatorIndex + 5, input.length());
+        listInputs.add(new Event(data, false, dateAndTime));
+        printAddedTaskMessage(indexAdded);
     }
 
     public static void main(String[] args) {
@@ -164,7 +167,7 @@ public class Duke {
                 printMessage(BYE_MESSAGE);
                 isRunning = false;
             }else if (input.equals("list")){
-                printList(listInputs, listPosition);
+                printList();
             }else if(input.startsWith("done ") == true) {
                 doneOperation(input);
             }else if(input.startsWith("todo ") == true) {
