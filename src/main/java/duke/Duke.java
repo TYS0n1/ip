@@ -105,7 +105,6 @@ public class Duke {
         printAddedTaskMessage(indexAdded);
     }
 
-
     public static void deadlineOperation(String input, int mode){
         if(input.length() == 9){
             printMessage(EMPTY_DEADLINE_INPUT_MESSAGE);
@@ -146,10 +145,50 @@ public class Duke {
         printAddedTaskMessage(indexAdded);
     }
 
-    public static void writeToFile(String filePath, String textToAdd) throws IOException {
+    public static void saveOperation(String input){
+        isPrintMessageEnabled = false;
+        try{
+            writeListToFile(listPath);
+        }catch(IOException e){
+            createNewFile(listPath);
+            saveOperation(input);
+        }finally{
+            isPrintMessageEnabled = true;
+        }
+    }
+
+    public static void writeListToFile(String filePath) throws IOException {
+        Task task = listInputs.get(0);
+        String formatedTaskData;
         FileWriter writer = new FileWriter(filePath);
-        writer.write(textToAdd);
+        formatedTaskData = formatTaskForTxt(task);
+        writer.write(formatedTaskData); //Override existing file
         writer.close();
+    }
+
+    public static String formatTaskForTxt(Task task){
+        String outputString;
+        String taskData = task.getData();
+        boolean isTaskDone = task.getIsDone();
+        String taskDoneString;
+        if(isTaskDone){
+            taskDoneString = "1";
+        }else{
+            taskDoneString = "0";
+        }
+        if(task instanceof Todo){
+            outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
+        }else if(task instanceof Deadline){
+            outputString = "D | " + taskDoneString  + " | " + taskData +
+                    " /by " + ((Deadline) task).getDateDue() + "\n";
+        }else if(task instanceof Event){
+            outputString = "E | " + taskDoneString  + " | " + taskData
+                    + " /at " + ((Event) task).getDateDue() + "\n";
+        }else{
+            outputString = "? | " + taskDoneString  + " | " + taskData + "\n";
+        }
+
+        return outputString;
     }
 
     public static void fileToList(String filePath) throws FileNotFoundException {
@@ -272,6 +311,8 @@ public class Duke {
                 printList();
             }else if(input.startsWith("done ") == true) {
                 doneOperation(input);
+            }else if(input.startsWith("save") == true) {
+                saveOperation(input);
             }else if(input.startsWith("todo ") == true) {
                 todoOperation(input, 0);
             }else if(input.startsWith("deadline ") == true) {
