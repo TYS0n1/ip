@@ -339,8 +339,9 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String currentWorkingDir = System.getProperty("user.dir");
-        listPath = currentWorkingDir + listPath;
+        //String currentWorkingDir = System.getProperty("user.dir");
+        //listPath = currentWorkingDir + listPath;
+        listPath = "C:/Users/Tan Yu Shing/Desktop/Sem 3 folder/CS2113T/Individual Project/ip/src/main/java/taskList.txt";
         getList(listPath);
 
         String logo = " ____        _        \n"
