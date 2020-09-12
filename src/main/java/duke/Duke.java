@@ -19,6 +19,7 @@ public class Duke {
     //static int listPosition = 0;
 
     private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
+    private static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";
     private static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
     private static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
     private static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
@@ -76,6 +77,7 @@ public class Duke {
             if(taskNumber < listInputs.size() && taskNumber >= 0){
                 listInputs.get(taskNumber).setIsDone(true);
                 printDoneStatement(listInputs.get(taskNumber));
+                saveOperation();
             }else{
                 printMessage(" Invalid task number\n " +
                         "done " + VALID_INDEX_RANGE);
@@ -103,6 +105,7 @@ public class Duke {
         String todoData = input.substring(5, input.length());
         listInputs.add(new Todo(todoData, false));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
     }
 
     public static void deadlineOperation(String input, int mode){
@@ -123,6 +126,7 @@ public class Duke {
         String date = input.substring(separatorIndex + 5, input.length());
         listInputs.add(new Deadline(data, false, date));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
     }
 
     public static void eventOperation(String input, int mode){
@@ -143,15 +147,24 @@ public class Duke {
         String dateAndTime = input.substring(separatorIndex + 5, input.length());
         listInputs.add(new Event(data, false, dateAndTime));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
     }
 
-    public static void saveOperation(String input){
+    /**
+     * Save operation triggers for the following actions
+     * todoOperation: adds todo task to the list
+     * deadlineOperation: add deadline task to the list
+     * eventOperation: add event task to the list
+     * doneOperation: appends isDone variable of task
+     * save command triggered: manually save tasks in list
+     */
+    public static void saveOperation(){
         isPrintMessageEnabled = false;
         try{
             writeListToFile(listPath);
         }catch(IOException e){
             createNewFile(listPath);
-            saveOperation(input);
+            saveOperation();
         }finally{
             isPrintMessageEnabled = true;
         }
@@ -160,9 +173,21 @@ public class Duke {
     public static void writeListToFile(String filePath) throws IOException {
         Task task = listInputs.get(0);
         String formatedTaskData;
-        FileWriter writer = new FileWriter(filePath);
         formatedTaskData = formatTaskForTxt(task);
+        FileWriter writer = new FileWriter(filePath);
         writer.write(formatedTaskData); //Override existing file
+        writer.close();
+
+        for(int i = 1; i < listInputs.size(); i++){
+            task = listInputs.get(i);
+            formatedTaskData = formatTaskForTxt(task);
+            appendToFile(filePath, formatedTaskData);
+        }
+    }
+
+    public static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter writer = new FileWriter(filePath, true);
+        writer.write(textToAppend);
         writer.close();
     }
 
@@ -200,12 +225,6 @@ public class Duke {
             //System.out.println(line);
             addNewTask(line);
         }
-    }
-
-    public static void appendToFile(String filePath, String textToAppend) throws IOException {
-        FileWriter writer = new FileWriter(filePath, true);
-        writer.write(textToAppend);
-        writer.close();
     }
 
     public static void createNewFile(String filePath){
@@ -311,8 +330,9 @@ public class Duke {
                 printList();
             }else if(input.startsWith("done ") == true) {
                 doneOperation(input);
-            }else if(input.startsWith("save") == true) {
-                saveOperation(input);
+            }else if(input.equals("save") == true) {
+                saveOperation();
+                printMessage(SAVED_MESSAGE);
             }else if(input.startsWith("todo ") == true) {
                 todoOperation(input, 0);
             }else if(input.startsWith("deadline ") == true) {

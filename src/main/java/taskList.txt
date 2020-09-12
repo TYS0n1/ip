@@ -1,4 +1,7 @@
 T | 1 | read book
-D | 0 | return book /by June 6th
-E | 0 | project meeting /at Aug 6th 2-4pm
+D | 1 | return book /by June 6th
+D | 0 | project meeting /by Aug 6th 2-4pm
 T | 1 | join sports club
+D | 1 | Eat apple /by Dec 12th 12pm
+T | 0 | abc1
+D | 0 | drink tea /by 1 hour
