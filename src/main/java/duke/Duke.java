@@ -157,6 +157,7 @@ public class Duke {
      * todoOperation: adds todo task to the list
      * deadlineOperation: add deadline task to the list
      * eventOperation: add event task to the list
+     * deleteOperation: removes a task from the list
      * doneOperation: appends isDone variable of task
      * save command triggered: manually save tasks in list
      */
@@ -307,6 +308,7 @@ public class Duke {
                 String taskData = listInputs.get(taskNumber).toString();
                 listInputs.remove(taskNumber);
                 printDeleteStatement(taskData);
+                saveOperation();
             }else{
                 printMessage(" Invalid task number\n " +
                         "delete " + VALID_INDEX_RANGE);
