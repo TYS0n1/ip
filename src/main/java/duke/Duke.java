@@ -6,14 +6,20 @@ import java.util.Scanner;
 import duke.task.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Duke {
     static ArrayList<Task> listInputs = new ArrayList<>();
+    public static String listPath = "/src/main/java/taskList.txt";
+    public static boolean isPrintMessageEnabled = true;
     //static int listPosition = 0;
 
     private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
+    private static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";
     private static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
     private static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
     private static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
@@ -35,6 +41,10 @@ public class Duke {
             "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";
 
     public static void printMessage(String message){
+        if(isPrintMessageEnabled == false){
+            return;
+        }
+
         System.out.println("____________________________________________________________");
         System.out.println(message);
         System.out.println("____________________________________________________________");
@@ -69,6 +79,7 @@ public class Duke {
             if(taskNumber < listInputs.size() && taskNumber >= 0){
                 listInputs.get(taskNumber).setIsDone(true);
                 printDoneStatement(listInputs.get(taskNumber));
+                saveOperation();
             }else{
                 printMessage(" Invalid task number\n " +
                         "done " + VALID_INDEX_RANGE);
@@ -96,8 +107,8 @@ public class Duke {
         String todoData = input.substring(5, input.length());
         listInputs.add(new Todo(todoData, false));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
     }
-
 
     public static void deadlineOperation(String input){
         if(input.length() == 9){
@@ -117,6 +128,7 @@ public class Duke {
         String date = input.substring(separatorIndex + 5, input.length());
         listInputs.add(new Deadline(data, false, date));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
     }
 
     public static void eventOperation(String input){
@@ -137,6 +149,147 @@ public class Duke {
         String dateAndTime = input.substring(separatorIndex + 5, input.length());
         listInputs.add(new Event(data, false, dateAndTime));
         printAddedTaskMessage(indexAdded);
+        saveOperation();
+    }
+
+    /**
+     * Save operation triggers for the following actions
+     * todoOperation: adds todo task to the list
+     * deadlineOperation: add deadline task to the list
+     * eventOperation: add event task to the list
+     * doneOperation: appends isDone variable of task
+     * save command triggered: manually save tasks in list
+     */
+    public static void saveOperation(){
+        isPrintMessageEnabled = false;
+        try{
+            writeListToFile(listPath);
+        }catch(IOException e){
+            createNewFile(listPath);
+            saveOperation();
+        }finally{
+            isPrintMessageEnabled = true;
+        }
+    }
+
+    public static void writeListToFile(String filePath) throws IOException {
+        Task task = listInputs.get(0);
+        String formatedTaskData;
+        formatedTaskData = formatTaskForTxt(task);
+        FileWriter writer = new FileWriter(filePath);
+        writer.write(formatedTaskData); //Override existing file
+        writer.close();
+
+        for(int i = 1; i < listInputs.size(); i++){
+            task = listInputs.get(i);
+            formatedTaskData = formatTaskForTxt(task);
+            appendToFile(filePath, formatedTaskData);
+        }
+    }
+
+    public static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter writer = new FileWriter(filePath, true);
+        writer.write(textToAppend);
+        writer.close();
+    }
+
+    public static String formatTaskForTxt(Task task){
+        String outputString;
+        String taskData = task.getData();
+        boolean isTaskDone = task.getIsDone();
+        String taskDoneString;
+        if(isTaskDone){
+            taskDoneString = "1";
+        }else{
+            taskDoneString = "0";
+        }
+        if(task instanceof Todo){
+            outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
+        }else if(task instanceof Deadline){
+            outputString = "D | " + taskDoneString  + " | " + taskData +
+                    " /by " + ((Deadline) task).getDateDue() + "\n";
+        }else if(task instanceof Event){
+            outputString = "E | " + taskDoneString  + " | " + taskData
+                    + " /at " + ((Event) task).getDateDue() + "\n";
+        }else{
+            outputString = "? | " + taskDoneString  + " | " + taskData + "\n";
+        }
+
+        return outputString;
+    }
+
+    public static void fileToList(String filePath) throws FileNotFoundException {
+        File file = new File(filePath); // create a File for the given file path
+        Scanner output = new Scanner(file); // create a Scanner using the File as the source
+        String line;
+        while (output.hasNext()) {
+            line = output.nextLine();
+            //System.out.println(line);
+            addNewTask(line);
+        }
+    }
+
+    public static void createNewFile(String filePath){
+        try{
+            File newFile = new File(filePath);
+            if(newFile.createNewFile() == true){
+                System.out.println("A new file created");
+            }
+        }catch(IOException e) {
+            System.out.println("An error occurred.");
+        }
+    }
+
+    public static void getList(String taskListPath){
+        isPrintMessageEnabled = false;
+        try {
+            fileToList(taskListPath);
+        } catch (FileNotFoundException e) {
+            createNewFile(taskListPath);
+        }finally{
+            isPrintMessageEnabled = true;
+        }
+    }
+
+    public static void addNewTask(String input){
+        if(input.length() <= 8){
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputHeader = input.substring(0, 2);
+        if(inputHeader.equals("T ") == true || inputHeader.equals("D ") == true ||
+                inputHeader.equals("E ") == true){
+            //Successful reading of data
+        }else{
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputDoneData = input.substring(2, 8);
+        if(inputDoneData.equals("| 1 | ") == true || inputDoneData.equals("| 0 | ") == true){
+            //Successful reading of data
+        }else{
+            System.out.println("Invalid task read.");
+            return;
+        }
+
+        String inputData = input.substring(8, input.length());
+
+        if(input.startsWith("T ") == true) {
+            todoOperation("todo " + inputData);
+        }else if(input.startsWith("D ") == true) {
+            deadlineOperation("deadline " + inputData);
+        }else if(input.startsWith("E ") == true) {
+            eventOperation("event " + inputData);
+        }else{
+            System.out.println("Invalid task read.");
+        }
+
+        if(inputDoneData.contains("1")){
+            listInputs.get(listInputs.size() - 1).setIsDone(true);
+        }
+
     }
 
     public static void deleteOperation(String input){
@@ -173,6 +326,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        String currentWorkingDir = System.getProperty("user.dir");
+        listPath = currentWorkingDir + listPath;
+        getList(listPath);
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -208,6 +365,9 @@ public class Duke {
                 printList();
             }else if(input.startsWith("done ") == true) {
                 doneOperation(input);
+            }else if(input.equals("save") == true) {
+                saveOperation();
+                printMessage(SAVED_MESSAGE);
             }else if(input.startsWith("todo ") == true) {
                 todoOperation(input);
             }else if(input.startsWith("deadline ") == true) {
