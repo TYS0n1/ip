@@ -16,6 +16,7 @@ public class Duke {
     static ArrayList<Task> listInputs = new ArrayList<>();
     public static String listPath = "/src/main/java/taskList.txt";
     public static boolean isPrintMessageEnabled = true;
+    public static boolean isLoading = true;
     //static int listPosition = 0;
 
     private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
@@ -162,6 +163,13 @@ public class Duke {
      * save command triggered: manually save tasks in list
      */
     public static void saveOperation(){
+        if(listInputs.size() <= 0){
+            printMessage(" List is empty");
+            return;
+        }else if(isLoading == true){
+            return;
+        }
+
         isPrintMessageEnabled = false;
         try{
             writeListToFile(listPath);
@@ -238,17 +246,20 @@ public class Duke {
             }
         }catch(IOException e) {
             System.out.println("An error occurred.");
+            System.out.println("listPath: " + listPath);
         }
     }
 
     public static void getList(String taskListPath){
         isPrintMessageEnabled = false;
+        isLoading = true;
         try {
             fileToList(taskListPath);
         } catch (FileNotFoundException e) {
             createNewFile(taskListPath);
         }finally{
             isPrintMessageEnabled = true;
+            isLoading = false;
         }
     }
 
