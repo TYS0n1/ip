@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Duke {
     static ArrayList<Task> listInputs = new ArrayList<>();
-    public static String listPath = "/src/main/java/taskList.txt";
+    public static String listPath = "/taskList.txt";
     public static boolean isPrintMessageEnabled = true;
     public static boolean isLoading = true;
     //static int listPosition = 0;
@@ -212,14 +212,15 @@ public class Duke {
         }else{
             taskDoneString = "0";
         }
-        if(task instanceof Todo){
-            outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
-        }else if(task instanceof Deadline){
-            outputString = "D | " + taskDoneString  + " | " + taskData +
-                    " /by " + ((Deadline) task).getDateDue() + "\n";
-        }else if(task instanceof Event){
-            outputString = "E | " + taskDoneString  + " | " + taskData
+
+        if(task instanceof Event) {
+            outputString = "E | " + taskDoneString + " | " + taskData
                     + " /at " + ((Event) task).getDateDue() + "\n";
+        }else if(task instanceof Deadline) {
+            outputString = "D | " + taskDoneString + " | " + taskData +
+                    " /by " + ((Deadline) task).getDateDue() + "\n";
+        }else if(task instanceof Todo){
+            outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
         }else{
             outputString = "? | " + taskDoneString  + " | " + taskData + "\n";
         }
@@ -242,7 +243,7 @@ public class Duke {
         try{
             File newFile = new File(filePath);
             if(newFile.createNewFile() == true){
-                System.out.println("A new file created");
+                //System.out.println("A new file created");
             }
         }catch(IOException e) {
             System.out.println("An error occurred.");
@@ -339,9 +340,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        //String currentWorkingDir = System.getProperty("user.dir");
-        //listPath = currentWorkingDir + listPath;
-        listPath = "C:/Users/Tan Yu Shing/Desktop/Sem 3 folder/CS2113T/Individual Project/ip/src/main/java/taskList.txt";
+        String currentWorkingDir = System.getProperty("user.dir");
+        listPath = currentWorkingDir + listPath;
         getList(listPath);
 
         String logo = " ____        _        \n"
