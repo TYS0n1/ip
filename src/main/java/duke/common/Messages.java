@@ -1,6 +1,6 @@
 package duke.common;
 
-import static duke.Duke.listInputs;
+import static duke.storage.StorageHandler.listInputs;
 
 public class Messages {
     public static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";

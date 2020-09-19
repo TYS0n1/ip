@@ -5,30 +5,30 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static duke.Duke.*;
+import static duke.storage.StorageHandler.listInputs;
+import static duke.storage.StorageHandler.listPath;
 
 public class DukeStorageEncoder {
-    public static void writeListToFile(String filePath) throws IOException {
+    public static void writeListToFile() throws IOException {
         Task task = listInputs.get(0);
         String formatedTaskData;
         formatedTaskData = formatTaskForTxt(task);
-        FileWriter writer = new FileWriter(filePath);
+        FileWriter writer = new FileWriter(listPath);
         writer.write(formatedTaskData); //Override existing file
         writer.close();
 
         for (int i = 1; i < listInputs.size(); i++) {
             task = listInputs.get(i);
             formatedTaskData = formatTaskForTxt(task);
-            appendToFile(filePath, formatedTaskData);
+            appendToFile(formatedTaskData);
         }
     }
 
-    public static void appendToFile(String filePath, String textToAppend) throws IOException {
-        FileWriter writer = new FileWriter(filePath, true);
+    public static void appendToFile(String textToAppend) throws IOException {
+        FileWriter writer = new FileWriter(listPath, true);
         writer.write(textToAppend);
         writer.close();
     }

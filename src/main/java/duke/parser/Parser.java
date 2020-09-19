@@ -1,11 +1,21 @@
 package duke.parser;
 
-import static duke.Duke.*;
+import static duke.taskList.taskListOperations.*;
 import static duke.common.Messages.*;
-
-import duke.common.Messages;
+import static duke.ui.UserInterface.*;
 
 public class Parser {
+    /**
+     * Special condition for each commands done, todo, deadline, event.
+     * Each command are required to have a space after the command to identify itself to not cause
+     * conflict with other commands with similar names.
+     * For example, current "event" command creates a event object and adds it to the list. However, if
+     * required in the future to create a "events" command to return all events on the list, "event"
+     * command would be triggered instead of "events" due to sequential code. A space would differentiate
+     * commands of similar naming.
+     * A temporary check for these commands without spacing is implemented in case of conflict with
+     * marking rubric or algorithm.
+     */
     public static int parseCommand(String input){
         if(input.equals("bye")) {
             printMessage(BYE_MESSAGE);

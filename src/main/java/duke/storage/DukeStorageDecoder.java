@@ -4,26 +4,29 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import static duke.Duke.*;
-import static duke.Duke.listInputs;
+import static duke.ui.UserInterface.isPrintMessageEnabled;
+import static duke.ui.UserInterface.isLoading;
+import static duke.storage.StorageHandler.listInputs;
+import static duke.storage.StorageHandler.listPath;
+import static duke.taskList.taskListOperations.*;
 import static duke.storage.StorageHandler.createNewFile;
 
 public class DukeStorageDecoder {
-    public static void getList(String taskListPath){
+    public static void getList(){
         isPrintMessageEnabled = false;
         isLoading = true;
         try {
-            fileToList(taskListPath);
+            fileToList();
         } catch (FileNotFoundException e) {
-            createNewFile(taskListPath);
+            createNewFile();
         }finally{
             isPrintMessageEnabled = true;
             isLoading = false;
         }
     }
 
-    public static void fileToList(String filePath) throws FileNotFoundException {
-        File file = new File(filePath); // create a File for the given file path
+    public static void fileToList() throws FileNotFoundException {
+        File file = new File(listPath); // create a File for the given file path
         Scanner output = new Scanner(file); // create a Scanner using the File as the source
         String line;
         while (output.hasNext()) {
