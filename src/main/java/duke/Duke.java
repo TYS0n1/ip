@@ -3,17 +3,21 @@ package duke;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
-import duke.task.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+
+import static duke.storage.DukeStorageDecoder.getList;
+import static duke.storage.DukeStorageEncoder.writeListToFile;
+import static duke.storage.StorageHandler.createNewFile;
 
 public class Duke {
-    static ArrayList<Task> listInputs = new ArrayList<>();
+    public static ArrayList<Task> listInputs = new ArrayList<>();
     public static String listPath = "/taskList.txt";
     public static boolean isPrintMessageEnabled = true;
     public static boolean isLoading = true;
@@ -179,130 +183,6 @@ public class Duke {
         }finally{
             isPrintMessageEnabled = true;
         }
-    }
-
-    public static void writeListToFile(String filePath) throws IOException {
-        Task task = listInputs.get(0);
-        String formatedTaskData;
-        formatedTaskData = formatTaskForTxt(task);
-        FileWriter writer = new FileWriter(filePath);
-        writer.write(formatedTaskData); //Override existing file
-        writer.close();
-
-        for(int i = 1; i < listInputs.size(); i++){
-            task = listInputs.get(i);
-            formatedTaskData = formatTaskForTxt(task);
-            appendToFile(filePath, formatedTaskData);
-        }
-    }
-
-    public static void appendToFile(String filePath, String textToAppend) throws IOException {
-        FileWriter writer = new FileWriter(filePath, true);
-        writer.write(textToAppend);
-        writer.close();
-    }
-
-    public static String formatTaskForTxt(Task task){
-        String outputString;
-        String taskData = task.getData();
-        boolean isTaskDone = task.getIsDone();
-        String taskDoneString;
-        if(isTaskDone){
-            taskDoneString = "1";
-        }else{
-            taskDoneString = "0";
-        }
-
-        if(task instanceof Event) {
-            outputString = "E | " + taskDoneString + " | " + taskData
-                    + " /at " + ((Event) task).getDateDue() + "\n";
-        }else if(task instanceof Deadline) {
-            outputString = "D | " + taskDoneString + " | " + taskData +
-                    " /by " + ((Deadline) task).getDateDue() + "\n";
-        }else if(task instanceof Todo){
-            outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
-        }else{
-            outputString = "? | " + taskDoneString  + " | " + taskData + "\n";
-        }
-
-        return outputString;
-    }
-
-    public static void fileToList(String filePath) throws FileNotFoundException {
-        File file = new File(filePath); // create a File for the given file path
-        Scanner output = new Scanner(file); // create a Scanner using the File as the source
-        String line;
-        while (output.hasNext()) {
-            line = output.nextLine();
-            //System.out.println(line);
-            addNewTask(line);
-        }
-    }
-
-    public static void createNewFile(String filePath){
-        try{
-            File newFile = new File(filePath);
-            if(newFile.createNewFile() == true){
-                //System.out.println("A new file created");
-            }
-        }catch(IOException e) {
-            System.out.println("An error occurred.");
-            System.out.println("listPath: " + listPath);
-        }
-    }
-
-    public static void getList(String taskListPath){
-        isPrintMessageEnabled = false;
-        isLoading = true;
-        try {
-            fileToList(taskListPath);
-        } catch (FileNotFoundException e) {
-            createNewFile(taskListPath);
-        }finally{
-            isPrintMessageEnabled = true;
-            isLoading = false;
-        }
-    }
-
-    public static void addNewTask(String input){
-        if(input.length() <= 8){
-            System.out.println("Invalid task read.");
-            return;
-        }
-
-        String inputHeader = input.substring(0, 2);
-        if(inputHeader.equals("T ") == true || inputHeader.equals("D ") == true ||
-                inputHeader.equals("E ") == true){
-            //Successful reading of data
-        }else{
-            System.out.println("Invalid task read.");
-            return;
-        }
-
-        String inputDoneData = input.substring(2, 8);
-        if(inputDoneData.equals("| 1 | ") == true || inputDoneData.equals("| 0 | ") == true){
-            //Successful reading of data
-        }else{
-            System.out.println("Invalid task read.");
-            return;
-        }
-
-        String inputData = input.substring(8, input.length());
-
-        if(input.startsWith("T ") == true) {
-            todoOperation("todo " + inputData);
-        }else if(input.startsWith("D ") == true) {
-            deadlineOperation("deadline " + inputData);
-        }else if(input.startsWith("E ") == true) {
-            eventOperation("event " + inputData);
-        }else{
-            System.out.println("Invalid task read.");
-        }
-
-        if(inputDoneData.contains("1")){
-            listInputs.get(listInputs.size() - 1).setIsDone(true);
-        }
-
     }
 
     public static void deleteOperation(String input){
