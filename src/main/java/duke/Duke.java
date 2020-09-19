@@ -12,6 +12,8 @@ import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
 
+import static duke.common.Messages.*;
+import static duke.parser.Parser.parseCommand;
 import static duke.storage.DukeStorageDecoder.getList;
 import static duke.storage.DukeStorageEncoder.writeListToFile;
 import static duke.storage.StorageHandler.createNewFile;
@@ -21,29 +23,6 @@ public class Duke {
     public static String listPath = "/taskList.txt";
     public static boolean isPrintMessageEnabled = true;
     public static boolean isLoading = true;
-    //static int listPosition = 0;
-
-    private static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
-    private static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";
-    private static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
-    private static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
-    private static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
-            " " + "deadline {info} /by {date}";
-    private static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
-            " " + "event {info} /by {date} {time}";
-    private static final String INVALID_INPUT_MAIN_MESSAGE =
-            " " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-    private static final String EMPTY_DONE_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a done cannot be empty.";
-    private static final String EMPTY_TODO_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a todo cannot be empty.";
-    private static final String EMPTY_DEADLINE_INPUT_MESSAGE =
-            " " + "☹ OOPS!!! The description of a deadline cannot be empty.";
-    private static final String EMPTY_EVENT_INPUT_MESSAGE =
-            " " + "☹ OOPS!!! The description of a event cannot be empty.";
-    private static final String EMPTY_DELETE_INPUT_MESSAGE =
-            " " + "☹ OOPS!!! The description of a delete cannot be empty.";
-
-    private static final String VALID_INDEX_RANGE =
-            "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";
 
     public static void printMessage(String message){
         if(isPrintMessageEnabled == false){
@@ -219,11 +198,7 @@ public class Duke {
         printMessage(outputMessage);
     }
 
-    public static void main(String[] args) {
-        String currentWorkingDir = System.getProperty("user.dir");
-        listPath = currentWorkingDir + listPath;
-        getList(listPath);
-
+    public static void printLogo(){
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -234,10 +209,18 @@ public class Duke {
         System.out.println(" Hello! I'm Duke");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
+    }
+
+    public static void main(String[] args) {
+        String currentWorkingDir = System.getProperty("user.dir");
+        listPath = currentWorkingDir + listPath;
+        getList(listPath);
+
+        printLogo();
 
         String input = "empty";
         Scanner in = new Scanner(System.in);
-        boolean isRunning = true;
+        int isRunning = 1;
 
         /**
          * Special condition for each commands done, todo, deadline, event.
@@ -250,33 +233,9 @@ public class Duke {
          * A temporary check for these commands without spacing is implemented in case of conflict with
          * marking rubric or algorithm.
          */
-        while(isRunning == true){
+        while(isRunning == 1){
             input = in.nextLine();
-            if(input.equals("bye")) {
-                printMessage(BYE_MESSAGE);
-                isRunning = false;
-            }else if (input.equals("list")){
-                printList();
-            }else if(input.startsWith("done ") == true) {
-                doneOperation(input);
-            }else if(input.equals("save") == true) {
-                saveOperation();
-                printMessage(SAVED_MESSAGE);
-            }else if(input.startsWith("todo ") == true) {
-                todoOperation(input);
-            }else if(input.startsWith("deadline ") == true) {
-                deadlineOperation(input);
-            }else if(input.startsWith("event ") == true) {
-                eventOperation(input);
-            }else if(input.startsWith("delete ") == true) {
-                deleteOperation(input);
-            }else if(input.equals("done") || input.equals("todo") ||
-                    input.equals("deadline") || input.equals("event") ||
-                    input.equals("delete")) {
-                printMessage(" ☹ OOPS!!! The description of a " + input + " cannot be empty.");
-            }else {
-                printMessage(INVALID_INPUT_MAIN_MESSAGE);
-            }
+            isRunning = parseCommand(input);
         }
     }
 }
