@@ -13,6 +13,11 @@ import static duke.storage.StorageHandler.listPath;
 
 public class DukeStorageEncoder {
     public static void writeListToFile() throws IOException {
+        if(listInputs.size() <= 0){
+            writeEmptyFile();
+            return;
+        }
+
         Task task = listInputs.get(0);
         String formatedTaskData;
         formatedTaskData = formatTaskForTxt(task);
@@ -25,6 +30,12 @@ public class DukeStorageEncoder {
             formatedTaskData = formatTaskForTxt(task);
             appendToFile(formatedTaskData);
         }
+    }
+
+    public static void writeEmptyFile() throws IOException{
+        FileWriter writer = new FileWriter(listPath);
+        writer.write("");
+        writer.close();
     }
 
     public static void appendToFile(String textToAppend) throws IOException {
@@ -46,10 +57,12 @@ public class DukeStorageEncoder {
 
         if(task instanceof Event) {
             outputString = "E | " + taskDoneString + " | " + taskData
-                    + " /at " + ((Event) task).getDateDue() + "\n";
+                    + " /at " + ((Event) task).getDateDue().toString()
+                    + " " + ((Event) task).getTimeDue().toString() + "\n";
         }else if(task instanceof Deadline) {
             outputString = "D | " + taskDoneString + " | " + taskData +
-                    " /by " + ((Deadline) task).getDateDue() + "\n";
+                    " /by " + ((Deadline) task).getDateDue().toString()
+                    + " " + ((Deadline) task).getTimeDue().toString() + "\n";
         }else if(task instanceof Todo){
             outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
         }else{
