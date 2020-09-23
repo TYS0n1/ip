@@ -55,7 +55,7 @@ Expected outcome:
 
 ____________________________________________________________
  Here are the tasks in your list:
- 1.[~][~]XXXXXXXX
- 2.[~][~]XXXXXXXX
+ 1.[X][X]XXXXXXXX
+ 2.[X][X]XXXXXXXX
 ____________________________________________________________
 
