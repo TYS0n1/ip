@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.Scanner;
-
 import duke.storage.StorageHandler;
 import duke.ui.UserInterface;
 
