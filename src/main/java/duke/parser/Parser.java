@@ -35,6 +35,8 @@ public class Parser {
             eventOperation(input);
         }else if(input.startsWith("delete ") == true) {
             deleteOperation(input);
+        }else if(input.startsWith("occur ") == true) {
+            occurOperation(input);
         }else if(input.equals("done") || input.equals("todo") ||
                 input.equals("deadline") || input.equals("event") ||
                 input.equals("delete")) {
