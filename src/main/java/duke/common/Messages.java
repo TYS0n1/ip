@@ -2,6 +2,9 @@ package duke.common;
 
 import static duke.storage.StorageHandler.listInputs;
 
+/**
+ * Holds the constants required for displaying information to the user.
+ */
 public class Messages {
     public static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
     public static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";

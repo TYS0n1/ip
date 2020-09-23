@@ -11,7 +11,13 @@ import static duke.storage.StorageHandler.listPath;
 import static duke.taskList.taskListOperations.*;
 import static duke.storage.StorageHandler.createNewFile;
 
+/**
+ * Holds the methods required for decoding data from the txt file.
+ */
 public class DukeStorageDecoder {
+    /**
+     * Sets Duke into decoding mode and runs decoder.
+     */
     public static void getList(){
         isPrintMessageEnabled = false;
         isLoading = true;
@@ -25,6 +31,11 @@ public class DukeStorageDecoder {
         }
     }
 
+    /**
+     * Reads Task from the txt file.
+     *
+     * @throws if no txt file found at listPath.
+     */
     public static void fileToList() throws FileNotFoundException {
         File file = new File(listPath); // create a File for the given file path
         Scanner output = new Scanner(file); // create a Scanner using the File as the source
@@ -36,6 +47,9 @@ public class DukeStorageDecoder {
         }
     }
 
+    /**
+     * Decodes and adds Task from txt file to Duke's Task ArrayList.
+     */
     public static void addNewTask(String input){
         if(input.length() <= 8){
             System.out.println("Invalid task read.");

@@ -5,16 +5,36 @@ import duke.task.Task;
 import static duke.storage.StorageHandler.listInputs;
 import static duke.common.Messages.*;
 
+/**
+ * Holds the methods and global variables required for displaying information
+ * about Duke program to the user.
+ */
 public class UserInterface {
+    /**
+     * Global variable isPrintMessageEnabled used to control printMessage function's
+     * ability to print information to the user.
+     * Global variable isLoading used during setup of the Duke program to hide background
+     * methods' messages from the user.
+     */
     public static boolean isPrintMessageEnabled;
     public static boolean isLoading;
 
+    /**
+     * Constructor. Sets UserInterface variables to respective states
+     * and prints the logo of Duke program.
+     */
     public UserInterface(){
         isPrintMessageEnabled = true;
         isLoading = false;
         printLogo();
     }
 
+    /**
+     * Prints message to the user inside dash boxes unless isPrintMessageEnabled is
+     * set to false.
+     *
+     * @param message a message the program displays for the user.
+     */
     public static void printMessage(String message){
         if(isPrintMessageEnabled == false){
             return;
@@ -25,6 +45,9 @@ public class UserInterface {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Prints out all Tasks found in the Task ArrayList of Duke program.
+     */
     public static void printList(){
         System.out.println("____________________________________________________________");
         System.out.println(LIST_HEADER_MESSAGE);
@@ -34,6 +57,10 @@ public class UserInterface {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Prints out a message to show Task was added successfully. Then prints out
+     * a message showing how many Tasks are there in the Task ArrayList of Duke program.
+     */
     public static void printAddedTaskMessage(int taskIndex){
         String outputMessage = " Got it. I've added this task: \n" + "   " +
                 listInputs.get(taskIndex).toString() + "\n" +
@@ -41,12 +68,19 @@ public class UserInterface {
         printMessage(outputMessage);
     }
 
+    /**
+     * Prints out a message to show Task was set as done successfully.
+     */
     public static void printDoneStatement(Task taskObject){
         String outputMessage = DONE_HEADER_MESSAGE + "\n" +
                 "   " + taskObject.toString();
         printMessage(outputMessage);
     }
 
+    /**
+     * Prints out a message to show Task was deleted successfully. Then prints out
+     * a message showing how many Tasks are there in the Task ArrayList of Duke program.
+     */
     public static void printDeleteStatement(String data){
         String outputMessage = " Noted. I've removed this task: \n" + "   " +
                 data + "\n" +
@@ -54,6 +88,9 @@ public class UserInterface {
         printMessage(outputMessage);
     }
 
+    /**
+     * Prints out an Ascii art for the Duke program and a greeting message.
+     */
     public static void printLogo(){
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

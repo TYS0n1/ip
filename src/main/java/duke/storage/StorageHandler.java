@@ -8,10 +8,27 @@ import java.util.ArrayList;
 
 import static duke.storage.DukeStorageDecoder.getList;
 
+/**
+ * Holds the methods and global variables required for setting up file I/O
+ * functions of Duke program.
+ */
 public class StorageHandler {
+    /**
+     * Global variable listPath is the directory path of the txt file
+     * which the Task ArrayList data will be retrieved and stored to.
+     * Global variable listInputs is the current Task ArrayList stored in the program.
+     */
     public static String listPath;
     public static ArrayList<Task> listInputs = new ArrayList<>();
 
+    /**
+     * Creates a directory path of the txt file which the Task ArrayList data
+     * will be retrieved and stored to. Then retrieve Tasks from that txt file.
+     *
+     * @param pathInput a path String provided by the user which would be the
+     * directory path of the txt file which the Task ArrayList data
+     * will be retrieved and stored to if valid.
+     */
     public StorageHandler(String pathInput){
         // set up unique path for the future, for now just set at root
         String currentWorkingDir = System.getProperty("user.dir");
@@ -20,6 +37,9 @@ public class StorageHandler {
         getList();
     }
 
+    /**
+     * Creates a new txt file at the directory given by listPAth variable.
+     */
     public static void createNewFile(){
         try{
             File newFile = new File(listPath);
