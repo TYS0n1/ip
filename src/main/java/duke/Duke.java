@@ -4,7 +4,7 @@ import java.util.Scanner;
 import duke.storage.StorageHandler;
 import duke.ui.UserInterface;
 
-import static duke.parser.Parser.parseCommand; 
+import static duke.parser.Parser.parseCommand;
 
 /**
  * Main class for the Duke Program. Initializes peripheral class during
