@@ -4,17 +4,24 @@ import static duke.taskList.taskListOperations.*;
 import static duke.common.Messages.*;
 import static duke.ui.UserInterface.*;
 
+/**
+ * Holds the method required for deciding actions for Duke.
+ */
 public class Parser {
     /**
-     * Special condition for each commands done, todo, deadline, event.
+     * Receives command from the user and decides on what action to take.
+     * <p>
+     * Special condition for each commands done, todo, deadline, event, delete.
      * Each command are required to have a space after the command to identify itself to not cause
      * conflict with other commands with similar names.
-     * For example, current "event" command creates a event object and adds it to the list. However, if
+     * For example, "event" command creates a event object and adds it to the list. However, if
      * required in the future to create a "events" command to return all events on the list, "event"
      * command would be triggered instead of "events" due to sequential code. A space would differentiate
      * commands of similar naming.
      * A temporary check for these commands without spacing is implemented in case of conflict with
      * marking rubric or algorithm.
+     *
+     * @param input a command the user entered into console
      */
     public static int parseCommand(String input){
         if(input.equals("bye")) {

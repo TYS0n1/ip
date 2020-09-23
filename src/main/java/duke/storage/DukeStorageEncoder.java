@@ -11,7 +11,16 @@ import java.io.IOException;
 import static duke.storage.StorageHandler.listInputs;
 import static duke.storage.StorageHandler.listPath;
 
+/**
+ * Holds the methods required for encoding data into the txt file.
+ */
 public class DukeStorageEncoder {
+
+    /**
+     * Writes Tasks' information into the txt file.
+     *
+     * @throws IOException if no txt file found at listPath.
+     */
     public static void writeListToFile() throws IOException {
         if(listInputs.size() <= 0){
             writeEmptyFile();
@@ -32,18 +41,30 @@ public class DukeStorageEncoder {
         }
     }
 
+
     public static void writeEmptyFile() throws IOException{
         FileWriter writer = new FileWriter(listPath);
         writer.write("");
         writer.close();
     }
 
+    /**
+     * Adds a Task's information into the txt file.
+     *
+     * @throws IOException if no txt file found at listPath.
+     */
     public static void appendToFile(String textToAppend) throws IOException {
         FileWriter writer = new FileWriter(listPath, true);
         writer.write(textToAppend);
         writer.close();
     }
 
+    /**
+     * Reformats a Task's information into a language that the Duke program
+     * decoder can understand.
+     *
+     * @return a String of the Task's reformatted information.
+     */
     public static String formatTaskForTxt(Task task){
         String outputString;
         String taskData = task.getData();

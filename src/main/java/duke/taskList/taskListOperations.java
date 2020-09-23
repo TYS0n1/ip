@@ -18,7 +18,16 @@ import static duke.storage.DukeStorageEncoder.writeListToFile;
 import static duke.storage.StorageHandler.*;
 import static duke.ui.UserInterface.*;
 
+/**
+ * Holds the methods for adding, removing, checking as done and saving
+ * tasks in Duke Program.
+ */
 public class taskListOperations {
+    /**
+     * Marks a task as done and saves changes into the txt file.
+     *
+     * @param input a command the user entered into console
+     */
     public static void doneOperation(String input){
         if(listInputs.size() == 0){
             printMessage(" List is empty");
@@ -44,6 +53,12 @@ public class taskListOperations {
         }
     }
 
+    /**
+     * Creates a Todo Task, adds it to the current list of Tasks
+     * and saves data into the txt file.
+     *
+     * @param input a command the user entered into console
+     */
     public static void todoOperation(String input){
         if(input.length() == 5){
             printMessage(EMPTY_TODO_INPUT_MESSAGE);
@@ -57,6 +72,12 @@ public class taskListOperations {
         saveOperation();
     }
 
+    /**
+     * Creates a Deadline Task, adds it to the current list of Tasks
+     * and saves data into the txt file.
+     *
+     * @param input a command the user entered into console
+     */
     public static void deadlineOperation(String input){
         if(input.length() == 9){
             printMessage(EMPTY_DEADLINE_INPUT_MESSAGE);
@@ -97,6 +118,12 @@ public class taskListOperations {
         saveOperation();
     }
 
+    /**
+     * Creates a Event Task, adds it to the current list of Tasks
+     * and saves data into the txt file.
+     *
+     * @param input a command the user entered into console
+     */
     public static void eventOperation(String input){
         if(input.length() == 6){
             printMessage(EMPTY_EVENT_INPUT_MESSAGE);
@@ -138,13 +165,7 @@ public class taskListOperations {
     }
 
     /**
-     * Save operation triggers for the following actions
-     * todoOperation: adds todo task to the list
-     * deadlineOperation: add deadline task to the list
-     * eventOperation: add event task to the list
-     * deleteOperation: removes a task from the list
-     * doneOperation: appends isDone variable of task
-     * save command triggered: manually save tasks in list
+     * Saves the current list of Tasks into a txt file.
      */
     public static void saveOperation(){
         if(isLoading == true){
@@ -162,6 +183,12 @@ public class taskListOperations {
         }
     }
 
+    /**
+     * Deletes a Task from the current list of Tasks
+     * and saves changes into the txt file.
+     *
+     * @param input a command the user entered into console
+     */
     public static void deleteOperation(String input){
         if(listInputs.size() <= 0){
             printMessage(" List is empty");

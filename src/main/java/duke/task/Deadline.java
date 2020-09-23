@@ -11,12 +11,22 @@ public class Deadline extends Task {
     private LocalDate dateDue;
     private LocalTime timeDue;
 
+    /**
+     * Constructor. Sets Deadline Task variables to respective states.
+     *
+     * @param stringInput a String input containing data about the Deadline Task.
+     * @param isDoneInput a Boolean input showing whether the Deadline Task is done or not.
+     * @param dateInput a String input showing the time the Deadline Task is due.
+     */
     public Deadline(String stringInput, boolean isDoneInput, LocalDate dateInput, LocalTime timeInput){
         super(stringInput, isDoneInput);
         dateDue = dateInput;
         timeDue = timeInput;
     }
 
+    /**
+     * Returns dateDue variable.
+     */
     public LocalDate getDateDue(){
         return dateDue;
     }
@@ -25,6 +35,9 @@ public class Deadline extends Task {
         return timeDue;
     }
 
+    /**
+     * Returns Deadline object as a String of data.
+     */
     @Override
     public String toString(){
         if(getIsDone() == true){

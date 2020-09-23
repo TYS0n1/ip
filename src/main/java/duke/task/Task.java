@@ -1,11 +1,21 @@
 package duke.task;
 
+/**
+ * Holds the methods and variables required to store and transmit
+ * information of Tasks added to Duke program.
+ */
 public class Task{
     private String data;
     private boolean isDone;
     private int taskNumber;
     private static int numberOfTasks = 0;
 
+    /**
+     * Constructor. Sets Task variables to respective states.
+     *
+     * @param stringInput a String input containing data about the Task.
+     * @param isDoneInput a Boolean input showing whether the Task is done or not.
+     */
     public Task(String stringInput, boolean isDoneInput){
         data = stringInput;
         isDone = isDoneInput;
@@ -13,14 +23,25 @@ public class Task{
         taskNumber = numberOfTasks;
     }
 
+    /**
+     * Sets isDone variable to the state of its input.
+     *
+     * @param isDoneInput a Boolean input showing whether the Task is done or not.
+     */
     public void setIsDone(boolean isDoneInput){
         isDone = isDoneInput;
     }
 
+    /**
+     * Returns isDone variable.
+     */
     public boolean getIsDone(){
         return isDone;
     }
 
+    /**
+     * Returns data variable.
+     */
     public String getData(){
         return data;
     }
@@ -29,6 +50,9 @@ public class Task{
         return taskNumber;
     }
 
+    /**
+     * Returns Task object as a String of data.
+     */
     public String toString(){
         if(isDone == true){
             return String.format("[✓] %s", data);
