@@ -8,10 +8,13 @@ public class Messages {
     public static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
     public static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
     public static final String SEARCH_HEADER_MESSAGE = " " + "Here are the matching tasks in your list:";
+    public static final String OCCUR_HEADER_MESSAGE = " " + "Tasks due on: ";
     public static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
-            " " + "deadline {info} /by {date}";
+            " " + "deadline {info} /by {dd/mm/yy} {hr:mn}";
     public static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
-            " " + "event {info} /by {date} {time}";
+            " " + "event {info} /at {dd/mm/yy} {hr:mn)}";
+    public static final String OCCUR_FORMAT_MESSAGE = " " + "Invalid occur declaration\n" +
+            " " + "occur {dd/mm/yy}";
     public static final String INVALID_INPUT_MAIN_MESSAGE =
             " " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String EMPTY_DONE_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a done cannot be empty.";
@@ -24,6 +27,8 @@ public class Messages {
             " " + "☹ OOPS!!! The description of a delete cannot be empty.";
     public static final String EMPTY_FIND_INPUT_MESSAGE =
             " " + "☹ OOPS!!! The description of a find cannot be empty.";
+    public static final String EMPTY_OCCUR_INPUT_MESSAGE =
+            " " + "☹ OOPS!!! The description of a occur cannot be empty.";
 
     public static final String VALID_INDEX_RANGE =
             "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";

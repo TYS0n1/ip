@@ -1,6 +1,0 @@
-T | 1 | read book
-D | 1 | return book /by June 6th
-D | 1 | project meeting /by Aug 6th 2-4pm
-T | 1 | paper plane
-T | 0 | abc
-D | 1 | hw jap /by tuesday morning

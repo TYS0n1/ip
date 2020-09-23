@@ -37,6 +37,8 @@ public class Parser {
             deleteOperation(input);
         }else if(input.startsWith("find ") == true) {
             findOperation(input);
+        }else if(input.startsWith("occur ") == true) {
+            occurOperation(input);
         }else if(input.equals("done") || input.equals("todo") ||
                 input.equals("deadline") || input.equals("event") ||
                 input.equals("delete")) {
