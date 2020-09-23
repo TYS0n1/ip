@@ -6,33 +6,44 @@ import static duke.storage.StorageHandler.listInputs;
  * Holds the constants required for displaying information to the user.
  */
 public class Messages {
-    public static final String BYE_MESSAGE = " " + "Bye. Hope to see you again soon!";
-    public static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";
-    public static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
-    public static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
-    public static final String SEARCH_HEADER_MESSAGE = " " + "Here are the matching tasks in your list:";
-    public static final String OCCUR_HEADER_MESSAGE = " " + "Tasks due on: ";
-    public static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
+    public static final String BYE = " " + "Bye. Hope to see you again soon!";
+    public static final String SAVED = " " + "Nice! I have saved your list.";
+    public static final String LIST_HEADER = " "  + "Here are the tasks in your list:";
+    public static final String DONE_HEADER = " " + "Nice! I've marked this task as done: ";
+    public static final String SEARCH_HEADER = " " + "Here are the matching tasks in your list:";
+    public static final String OCCUR_HEADER = " " + "Tasks due on: ";
+    public static final String DEADLINE_FORMAT = " " + "Invalid deadline declaration\n" +
             " " + "deadline {info} /by {dd/mm/yy} {hr:mn}";
-    public static final String EVENT_FORMAT_MESSAGE = " " + "Invalid event declaration\n" +
+    public static final String EVENT_FORMAT = " " + "Invalid event declaration\n" +
             " " + "event {info} /at {dd/mm/yy} {hr:mn)}";
-    public static final String OCCUR_FORMAT_MESSAGE = " " + "Invalid occur declaration\n" +
+    public static final String OCCUR_FORMAT = " " + "Invalid occur declaration\n" +
             " " + "occur {dd/mm/yy}";
-    public static final String INVALID_INPUT_MAIN_MESSAGE =
+    public static final String INVALID_INPUT_MAIN =
             " " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-    public static final String EMPTY_DONE_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a done cannot be empty.";
-    public static final String EMPTY_TODO_INPUT_MESSAGE = " " + "☹ OOPS!!! The description of a todo cannot be empty.";
-    public static final String EMPTY_DEADLINE_INPUT_MESSAGE =
+    public static final String EMPTY_DONE_INPUT = " " + "☹ OOPS!!! The description of a done cannot be empty.";
+    public static final String EMPTY_TODO_INPUT = " " + "☹ OOPS!!! The description of a todo cannot be empty.";
+    public static final String EMPTY_DEADLINE_INPUT =
             " " + "☹ OOPS!!! The description of a deadline cannot be empty.";
-    public static final String EMPTY_EVENT_INPUT_MESSAGE =
+    public static final String EMPTY_EVENT_INPUT =
             " " + "☹ OOPS!!! The description of a event cannot be empty.";
-    public static final String EMPTY_DELETE_INPUT_MESSAGE =
+    public static final String EMPTY_DELETE_INPUT =
             " " + "☹ OOPS!!! The description of a delete cannot be empty.";
-    public static final String EMPTY_FIND_INPUT_MESSAGE =
+    public static final String EMPTY_FIND_INPUT =
             " " + "☹ OOPS!!! The description of a find cannot be empty.";
-    public static final String EMPTY_OCCUR_INPUT_MESSAGE =
+    public static final String EMPTY_OCCUR_INPUT =
             " " + "☹ OOPS!!! The description of a occur cannot be empty.";
 
     public static final String VALID_INDEX_RANGE =
             "{valid index from 1 to " + Integer.toString(listInputs.size()) + "}";
+    public static final String TASK_READ_FAIL = "Invalid task read.";
+
+    /**
+     * Returns a message telling user that the command typed in cannot be empty.
+     *
+     * @param inputString the command the user has typed in.
+     * @return a message telling user that the command typed in cannot be empty.
+     */
+    public static String emptyDescription(String inputString){
+        return " ☹ OOPS!!! The description of a " + inputString + " cannot be empty.";
+    }
 }

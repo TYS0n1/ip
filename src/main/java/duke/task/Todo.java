@@ -1,6 +1,9 @@
 package duke.task;
-import duke.task.Task;
 
+/**
+ * Holds the methods and variables required to store and transmit
+ * information of Todo Tasks added to Duke program.
+ */
 public class Todo extends Task {
     /**
      * Constructor. Sets Todo Task variables to respective states.
@@ -8,19 +11,25 @@ public class Todo extends Task {
      * @param stringInput a String input containing data about the Todo Task.
      * @param isDoneInput a Boolean input showing whether the Todo Task is done or not.
      */
-    public Todo(String stringInput, boolean isDoneInput){
+    public Todo(String stringInput, boolean isDoneInput) {
         super(stringInput, isDoneInput);
     }
 
     /**
      * Returns Todo object as a String of data.
+     *
+     * @return String containing information of Todo object.
      */
     @Override
-    public String toString(){
-        if(getIsDone() == true){
-            return String.format("[T][✓] %s", getData());
-        }else{
-            return String.format("[T][✗] %s", getData());
+    public String toString() {
+        String doneAsciiArt;
+
+        if (getIsDone() == true) {
+            doneAsciiArt = "✓";
+        } else {
+            doneAsciiArt = "✗";
         }
+
+        return String.format("[T][%s] %s", doneAsciiArt, getData());
     }
 }

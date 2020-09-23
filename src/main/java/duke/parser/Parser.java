@@ -1,8 +1,8 @@
 package duke.parser;
 
-import static duke.taskList.taskListOperations.*;
-import static duke.common.Messages.*;
-import static duke.ui.UserInterface.*;
+import duke.common.Messages;
+import duke.ui.UserInterface;
+import duke.taskList.TaskListOperations;
 
 /**
  * Holds the method required for deciding actions for Duke.
@@ -10,6 +10,7 @@ import static duke.ui.UserInterface.*;
 public class Parser {
     /**
      * Receives command from the user and decides on what action to take.
+     * Returns an Integer (1 or 0) to tell Duke whether to continue.
      * <p>
      * Special condition for each commands done, todo, deadline, event, delete.
      * Each command are required to have a space after the command to identify itself to not cause
@@ -22,37 +23,39 @@ public class Parser {
      * marking rubric or algorithm.
      *
      * @param input a command the user entered into console
+     * @return returns returnValue, if 0 tells Duke to shut down.
      */
-    public static int parseCommand(String input){
-        if(input.equals("bye")) {
-            printMessage(BYE_MESSAGE);
-            return 0;
-        }else if (input.equals("list")){
-            printList();
-        }else if(input.startsWith("done ") == true) {
-            doneOperation(input);
-        }else if(input.equals("save") == true) {
-            saveOperation();
-            printMessage(SAVED_MESSAGE);
-        }else if(input.startsWith("todo ") == true) {
-            todoOperation(input);
-        }else if(input.startsWith("deadline ") == true) {
-            deadlineOperation(input);
-        }else if(input.startsWith("event ") == true) {
-            eventOperation(input);
-        }else if(input.startsWith("delete ") == true) {
-            deleteOperation(input);
-        }else if(input.startsWith("find ") == true) {
-            findOperation(input);
-        }else if(input.startsWith("occur ") == true) {
-            occurOperation(input);
-        }else if(input.equals("done") || input.equals("todo") ||
+    public static int parseCommand(String input) {
+        int returnValue = 1;
+        if (input.equals("bye")) {
+            UserInterface.printMessage(Messages.BYE);
+            returnValue = 0;
+        } else if (input.equals("list")){
+            UserInterface.printList();
+        } else if (input.startsWith("done ") == true) {
+            TaskListOperations.setTaskDone(input);
+        } else if (input.equals("save") == true) {
+            TaskListOperations.saveTasks();
+            UserInterface.printMessage(Messages.SAVED);
+        } else if (input.startsWith("todo ") == true) {
+            TaskListOperations.createTodo(input);
+        } else if (input.startsWith("deadline ") == true) {
+            TaskListOperations.createDeadline(input);
+        } else if (input.startsWith("event ") == true) {
+            TaskListOperations.createEvent(input);
+        } else if (input.startsWith("delete ") == true) {
+            TaskListOperations.deleteTask(input);
+        } else if (input.startsWith("find ") == true) {
+            TaskListOperations.findTask(input);
+        } else if (input.startsWith("occur ") == true) {
+            TaskListOperations.occuranceTask(input);
+        } else if (input.equals("done") || input.equals("todo") ||
                 input.equals("deadline") || input.equals("event") ||
                 input.equals("delete")) {
-            printMessage(" ☹ OOPS!!! The description of a " + input + " cannot be empty.");
-        }else {
-            printMessage(INVALID_INPUT_MAIN_MESSAGE);
+            UserInterface.printMessage(Messages.emptyDescription(input));
+        } else {
+            UserInterface.printMessage(Messages.INVALID_INPUT_MAIN);
         }
-        return 1;
+        return returnValue;
     }
 }

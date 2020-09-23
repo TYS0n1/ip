@@ -4,7 +4,7 @@ package duke.task;
  * Holds the methods and variables required to store and transmit
  * information of Tasks added to Duke program.
  */
-public class Task{
+public class Task {
     private String data;
     private boolean isDone;
     private int taskNumber;
@@ -16,7 +16,7 @@ public class Task{
      * @param stringInput a String input containing data about the Task.
      * @param isDoneInput a Boolean input showing whether the Task is done or not.
      */
-    public Task(String stringInput, boolean isDoneInput){
+    public Task(String stringInput, boolean isDoneInput) {
         data = stringInput;
         isDone = isDoneInput;
         numberOfTasks++;
@@ -28,36 +28,41 @@ public class Task{
      *
      * @param isDoneInput a Boolean input showing whether the Task is done or not.
      */
-    public void setIsDone(boolean isDoneInput){
+    public void setIsDone(boolean isDoneInput) {
         isDone = isDoneInput;
     }
 
     /**
      * Returns isDone variable.
      */
-    public boolean getIsDone(){
+    public boolean getIsDone() {
         return isDone;
     }
 
     /**
      * Returns data variable.
      */
-    public String getData(){
+    public String getData() {
         return data;
     }
 
-    public int getTaskNumber(){
+    public int getTaskNumber() {
         return taskNumber;
     }
 
     /**
      * Returns Task object as a String of data.
+     *
+     * @return String containing information of Task object.
      */
-    public String toString(){
-        if(isDone == true){
-            return String.format("[✓] %s", data);
-        }else{
-            return String.format("[✗] %s", data);
+    public String toString() {
+        String doneAsciiArt;
+
+        if (getIsDone() == true) {
+            doneAsciiArt = "✓";
+        } else {
+            doneAsciiArt = "✗";
         }
+        return String.format("[%s] %s", doneAsciiArt, data);
     }
 }

@@ -15,14 +15,13 @@ import static duke.storage.StorageHandler.listPath;
  * Holds the methods required for encoding data into the txt file.
  */
 public class DukeStorageEncoder {
-
     /**
      * Writes Tasks' information into the txt file.
      *
-     * @throws IOException if no txt file found at listPath.
+     * @throws IOException if invalid directory path given, listPath.
      */
     public static void writeListToFile() throws IOException {
-        if(listInputs.size() <= 0){
+        if (listInputs.size() <= 0) {
             writeEmptyFile();
             return;
         }
@@ -41,8 +40,13 @@ public class DukeStorageEncoder {
         }
     }
 
-
-    public static void writeEmptyFile() throws IOException{
+    /**
+     * Writes an empty txt file at listPath. Used to delete last
+     * Task from the txt file.
+     *
+     * @throws IOException if invalid directory path given, listPath.
+     */
+    public static void writeEmptyFile() throws IOException {
         FileWriter writer = new FileWriter(listPath);
         writer.write("");
         writer.close();
@@ -70,23 +74,23 @@ public class DukeStorageEncoder {
         String taskData = task.getData();
         boolean isTaskDone = task.getIsDone();
         String taskDoneString;
-        if(isTaskDone){
+        if (isTaskDone) {
             taskDoneString = "1";
         }else{
             taskDoneString = "0";
         }
 
-        if(task instanceof Event) {
+        if (task instanceof Event) {
             outputString = "E | " + taskDoneString + " | " + taskData
                     + " /at " + ((Event) task).getDateDue().toString()
                     + " " + ((Event) task).getTimeDue().toString() + "\n";
-        }else if(task instanceof Deadline) {
+        } else if (task instanceof Deadline) {
             outputString = "D | " + taskDoneString + " | " + taskData +
                     " /by " + ((Deadline) task).getDateDue().toString()
                     + " " + ((Deadline) task).getTimeDue().toString() + "\n";
-        }else if(task instanceof Todo){
+        } else if (task instanceof Todo){
             outputString = "T | " + taskDoneString  + " | " + taskData + "\n";
-        }else{
+        } else {
             outputString = "? | " + taskDoneString  + " | " + taskData + "\n";
         }
 

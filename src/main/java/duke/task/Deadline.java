@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.task.Task;
-
-
+/**
+ * Holds the methods and variables required to store and transmit
+ * information of Deadline Tasks added to Duke program.
+ */
 public class Deadline extends Task {
     private LocalDate dateDue;
     private LocalTime timeDue;
@@ -18,7 +19,7 @@ public class Deadline extends Task {
      * @param isDoneInput a Boolean input showing whether the Deadline Task is done or not.
      * @param dateInput a String input showing the time the Deadline Task is due.
      */
-    public Deadline(String stringInput, boolean isDoneInput, LocalDate dateInput, LocalTime timeInput){
+    public Deadline(String stringInput, boolean isDoneInput, LocalDate dateInput, LocalTime timeInput) {
         super(stringInput, isDoneInput);
         dateDue = dateInput;
         timeDue = timeInput;
@@ -27,25 +28,30 @@ public class Deadline extends Task {
     /**
      * Returns dateDue variable.
      */
-    public LocalDate getDateDue(){
+    public LocalDate getDateDue() {
         return dateDue;
     }
 
-    public LocalTime getTimeDue(){
+    public LocalTime getTimeDue() {
         return timeDue;
     }
 
     /**
      * Returns Deadline object as a String of data.
+     *
+     * @return String containing information of Deadline object.
      */
     @Override
-    public String toString(){
-        if(getIsDone() == true){
-            return String.format("[D][✓] %s (by: ", getData()) +
-                    dateDue.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + timeDue.toString() + ")";
-        }else{
-            return String.format("[D][✗] %s (by: ", getData()) +
-                    dateDue.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " "  + timeDue.toString() + ")";
+    public String toString() {
+        String doneAsciiArt;
+
+        if (getIsDone() == true) {
+            doneAsciiArt = "✓";
+        } else {
+            doneAsciiArt = "✗";
         }
+
+        return String.format("[D][%s] %s (by: ", doneAsciiArt, getData()) +
+                dateDue.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + timeDue.toString() + ")";
     }
 }

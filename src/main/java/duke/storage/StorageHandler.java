@@ -29,7 +29,7 @@ public class StorageHandler {
      * directory path of the txt file which the Task ArrayList data
      * will be retrieved and stored to if valid.
      */
-    public StorageHandler(String pathInput){
+    public StorageHandler(String pathInput) {
         // set up unique path for the future, for now just set at root
         String currentWorkingDir = System.getProperty("user.dir");
         listPath = currentWorkingDir + "/taskList.txt";
@@ -38,15 +38,17 @@ public class StorageHandler {
     }
 
     /**
-     * Creates a new txt file at the directory given by listPAth variable.
+     * Creates a new txt file at the directory given by listPath variable.
+     *
+     * @throws IOException if invalid directory path is given.
      */
-    public static void createNewFile(){
-        try{
+    public static void createNewFile() {
+        try {
             File newFile = new File(listPath);
-            if(newFile.createNewFile() == true){
+            if (newFile.createNewFile() == true) {
                 //System.out.println("A new file created");
             }
-        }catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             System.out.println("listPath: " + listPath);
         }

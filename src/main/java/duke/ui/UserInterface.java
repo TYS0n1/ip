@@ -2,12 +2,13 @@ package duke.ui;
 
 import duke.task.Deadline;
 import duke.task.Task;
+import duke.common.Messages;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static duke.storage.StorageHandler.listInputs;
-import static duke.common.Messages.*;
+
 
 /**
  * Holds the methods and global variables required for displaying information
@@ -27,7 +28,7 @@ public class UserInterface {
      * Constructor. Sets UserInterface variables to respective states
      * and prints the logo of Duke program.
      */
-    public UserInterface(){
+    public UserInterface() {
         isPrintMessageEnabled = true;
         isLoading = false;
         printLogo();
@@ -39,8 +40,8 @@ public class UserInterface {
      *
      * @param message a message the program displays for the user.
      */
-    public static void printMessage(String message){
-        if(isPrintMessageEnabled == false){
+    public static void printMessage(String message) {
+        if (isPrintMessageEnabled == false) {
             return;
         }
 
@@ -52,28 +53,39 @@ public class UserInterface {
     /**
      * Prints out all Tasks found in the Task ArrayList of Duke program.
      */
-    public static void printList(){
+    public static void printList() {
         System.out.println("____________________________________________________________");
-        System.out.println(LIST_HEADER_MESSAGE);
-        for(int i = 0; i < listInputs.size(); i++){
+        System.out.println(Messages.LIST_HEADER);
+        for (int i = 0; i < listInputs.size(); i++) {
             System.out.printf(" %d.%s\n", i + 1, listInputs.get(i).toString());
         }
         System.out.println("____________________________________________________________");
     }
 
-    public static void printSearchedTasks(ArrayList<Task> matchingTasks){
+    /**
+     * Prints out all Tasks in the Task ArrayList matching search String.
+     *
+     * @param matchingTasks a Task ArrayList containing Tasks matching searched String.
+     */
+    public static void printSearchedTasks(ArrayList<Task> matchingTasks) {
         System.out.println("____________________________________________________________");
-        System.out.println(SEARCH_HEADER_MESSAGE);
-        for(int i = 0; i < matchingTasks.size(); i++){
+        System.out.println(Messages.SEARCH_HEADER);
+        for (int i = 0; i < matchingTasks.size(); i++) {
             System.out.printf(" %d.%s\n", i + 1, matchingTasks.get(i).toString());
         }
         System.out.println("____________________________________________________________");
     }
 
-    public static void printOccurences(ArrayList<Deadline> tasksOnTargetDate, LocalDate targetDate){
+    /**
+     * Prints out all Tasks in the Task ArrayList matching input date.
+     *
+     * @param tasksOnTargetDate a Task ArrayList containing Tasks matching input date.
+     * @param targetDate a LocalDate the user inputted in the command line.
+     */
+    public static void printOccurences(ArrayList<Deadline> tasksOnTargetDate, LocalDate targetDate) {
         System.out.println("____________________________________________________________");
-        System.out.println(OCCUR_HEADER_MESSAGE + targetDate.toString());
-        for(int i = 0; i < tasksOnTargetDate.size(); i++){
+        System.out.println(Messages.OCCUR_HEADER + targetDate.toString());
+        for (int i = 0; i < tasksOnTargetDate.size(); i++) {
             System.out.printf(" %d.%s\n", i + 1, tasksOnTargetDate.get(i).toString());
         }
         System.out.println("____________________________________________________________");
@@ -83,7 +95,7 @@ public class UserInterface {
      * Prints out a message to show Task was added successfully. Then prints out
      * a message showing how many Tasks are there in the Task ArrayList of Duke program.
      */
-    public static void printAddedTaskMessage(int taskIndex){
+    public static void printAddedTaskMessage(int taskIndex) {
         String outputMessage = " Got it. I've added this task: \n" + "   " +
                 listInputs.get(taskIndex).toString() + "\n" +
                 " Now you have " + Integer.toString(listInputs.size()) + " tasks in the list.";
@@ -93,8 +105,8 @@ public class UserInterface {
     /**
      * Prints out a message to show Task was set as done successfully.
      */
-    public static void printDoneStatement(Task taskObject){
-        String outputMessage = DONE_HEADER_MESSAGE + "\n" +
+    public static void printDoneStatement(Task taskObject) {
+        String outputMessage = Messages.DONE_HEADER + "\n" +
                 "   " + taskObject.toString();
         printMessage(outputMessage);
     }
@@ -103,7 +115,7 @@ public class UserInterface {
      * Prints out a message to show Task was deleted successfully. Then prints out
      * a message showing how many Tasks are there in the Task ArrayList of Duke program.
      */
-    public static void printDeleteStatement(String data){
+    public static void printDeleteStatement(String data) {
         String outputMessage = " Noted. I've removed this task: \n" + "   " +
                 data + "\n" +
                 " Now you have " + Integer.toString(listInputs.size()) + " tasks in the list.";
@@ -113,7 +125,7 @@ public class UserInterface {
     /**
      * Prints out an Ascii art for the Duke program and a greeting message.
      */
-    public static void printLogo(){
+    public static void printLogo() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
