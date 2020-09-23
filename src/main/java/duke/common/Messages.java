@@ -7,6 +7,7 @@ public class Messages {
     public static final String SAVED_MESSAGE = " " + "Nice! I have saved your list.";
     public static final String LIST_HEADER_MESSAGE = " "  + "Here are the tasks in your list:";
     public static final String DONE_HEADER_MESSAGE = " " + "Nice! I've marked this task as done: ";
+    public static final String SEARCH_HEADER_MESSAGE = " " + "Here are the matching tasks in your list:";
     public static final String OCCUR_HEADER_MESSAGE = " " + "Tasks due on: ";
     public static final String DEADLINE_FORMAT_MESSAGE = " " + "Invalid deadline declaration\n" +
             " " + "deadline {info} /by {dd/mm/yy} {hr:mn}";
@@ -24,6 +25,8 @@ public class Messages {
             " " + "☹ OOPS!!! The description of a event cannot be empty.";
     public static final String EMPTY_DELETE_INPUT_MESSAGE =
             " " + "☹ OOPS!!! The description of a delete cannot be empty.";
+    public static final String EMPTY_FIND_INPUT_MESSAGE =
+            " " + "☹ OOPS!!! The description of a find cannot be empty.";
     public static final String EMPTY_OCCUR_INPUT_MESSAGE =
             " " + "☹ OOPS!!! The description of a occur cannot be empty.";
 

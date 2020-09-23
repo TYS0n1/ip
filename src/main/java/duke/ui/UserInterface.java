@@ -38,6 +38,15 @@ public class UserInterface {
         System.out.println("____________________________________________________________");
     }
 
+    public static void printSearchedTasks(ArrayList<Task> matchingTasks){
+        System.out.println("____________________________________________________________");
+        System.out.println(SEARCH_HEADER_MESSAGE);
+        for(int i = 0; i < matchingTasks.size(); i++){
+            System.out.printf(" %d.%s\n", i + 1, matchingTasks.get(i).toString());
+        }
+        System.out.println("____________________________________________________________");
+    }
+
     public static void printOccurences(ArrayList<Deadline> tasksOnTargetDate, LocalDate targetDate){
         System.out.println("____________________________________________________________");
         System.out.println(OCCUR_HEADER_MESSAGE + targetDate.toString());

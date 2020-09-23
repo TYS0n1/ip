@@ -1,11 +1,11 @@
 package duke.taskList;
 
+import duke.task.Task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -313,4 +313,24 @@ public class taskListOperations {
         }
     }
 
+    public static void findOperation(String input){
+        if(listInputs.size() == 0){
+            printMessage(" List is empty");
+            return;
+        }else if(input.length() == 5){
+            printMessage(EMPTY_FIND_INPUT_MESSAGE);
+            return;
+        }
+
+        String searchPhrase = input.substring(5, input.length());
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+        for(int i = 0; i < listInputs.size(); i++){
+            if(listInputs.get(i).toString().contains(searchPhrase)){
+                matchingTasks.add(listInputs.get(i));
+            }
+        }
+
+        printSearchedTasks(matchingTasks);
+    }
 }
