@@ -127,9 +127,9 @@ Example of usage:
 Expected outcome:
 
 ____________________________________________________________
- Here are the tasks in your list:
+ Nice! I've marked this task as done: 
 
- 1.[D][1] homework (by: Sep 9 2020 09:00)
+   [T][1] homework
 
 ____________________________________________________________
 
