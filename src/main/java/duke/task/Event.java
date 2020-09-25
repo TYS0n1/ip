@@ -27,15 +27,15 @@ public class Event extends Deadline {
      */
     @Override
     public String toString() {
-        String doneAsciiArt;
+        String doneCharacter;
 
         if (getIsDone() == true) {
-            doneAsciiArt = "✓";
+            doneCharacter = "1";
         } else {
-            doneAsciiArt = "✗";
+            doneCharacter = "0";
         }
 
-        return String.format("[E][%s] %s (at: ", doneAsciiArt, getData()) +
+        return String.format("[E][%s] %s (at: ", doneCharacter, getData()) +
                 getDateDue().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " "  + getTimeDue() + ")";
     }
 }

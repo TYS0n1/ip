@@ -24,13 +24,8 @@ public class StorageHandler {
     /**
      * Creates a directory path of the txt file which the Task ArrayList data
      * will be retrieved and stored to. Then retrieve Tasks from that txt file.
-     *
-     * @param pathInput a path String provided by the user which would be the
-     * directory path of the txt file which the Task ArrayList data
-     * will be retrieved and stored to if valid.
      */
-    public StorageHandler(String pathInput) {
-        // set up unique path for the future, for now just set at root
+    public StorageHandler() {
         String currentWorkingDir = System.getProperty("user.dir");
         listPath = currentWorkingDir + "/taskList.txt";
 

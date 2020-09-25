@@ -56,13 +56,13 @@ public class Task {
      * @return String containing information of Task object.
      */
     public String toString() {
-        String doneAsciiArt;
+        String doneCharacter;
 
         if (getIsDone() == true) {
-            doneAsciiArt = "✓";
+            doneCharacter = "1";
         } else {
-            doneAsciiArt = "✗";
+            doneCharacter = "0";
         }
-        return String.format("[%s] %s", doneAsciiArt, data);
+        return String.format("[%s] %s", doneCharacter, data);
     }
 }

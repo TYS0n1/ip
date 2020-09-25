@@ -21,6 +21,8 @@ Description of feature.
    1. Adds a task with a due date and time.
 1. Print list of Tasks
    1. Prints out all current tasks.
+1. Mark a task as done
+   1. Mark a task from the current list ot tasks as done.
 1. Delete an task item
    1. Delete a task from the current list of tasks.
 1. Save tasks to txt file
@@ -37,6 +39,7 @@ Description of feature.
 1. Add Deadline item - "deadline {description} /by {dd/mm/yy} {hr:mn}"
 1. Add Event item - "event {description} /at {dd/mm/yy} {hr:mn)}"
 1. Print list of Tasks - "list"
+1. Mark a task as done - "done {task number}"
 1. Delete an task item - "delete {task number}"
 1. Save tasks to txt file - "save"
 1. Find tasks with keyword - "find {keyword/phrase}"
@@ -55,7 +58,7 @@ ____________________________________________________________
 
  Got it. I've added this task:
 
-   [T][✗] homework
+   [T][0] homework
 
  Now you have 1 tasks in the list.
 
@@ -73,7 +76,7 @@ ____________________________________________________________
 
  Got it. I've added this task:
 
-   [D][✗] homework (by: Sep 9 2020 09:00)
+   [D][0] homework (by: Sep 9 2020 09:00)
 
  Now you have 1 tasks in the list.
 
@@ -91,7 +94,7 @@ ____________________________________________________________
 
  Got it. I've added this task:
 
-   [E][✗] party (at: Dec 10 2020 20:00)
+   [E][0] party (at: Dec 10 2020 20:00)
 
  Now you have 1 tasks in the list.
 
@@ -109,9 +112,24 @@ Expected outcome:
 ____________________________________________________________
  Here are the tasks in your list:
 
- 1.[D][✗] homework (by: Sep 9 2020 09:00)
+ 1.[D][0] homework (by: Sep 9 2020 09:00)
 
- 2.[E][✗] party (at: Dec 10 2020 20:00)
+ 2.[E][0] party (at: Dec 10 2020 20:00)
+
+____________________________________________________________
+
+### `done` - Mark a task as done
+
+Example of usage: 
+
+`done 1`
+
+Expected outcome:
+
+____________________________________________________________
+ Here are the tasks in your list:
+
+ 1.[D][1] homework (by: Sep 9 2020 09:00)
 
 ____________________________________________________________
 
@@ -126,7 +144,7 @@ Expected outcome:
 ____________________________________________________________
  Noted. I've removed this task: 
 
-   [D][✗] homework (by: Sep 9 2020 09:00)
+   [D][0] homework (by: Sep 9 2020 09:00)
 
  Now you have 0 tasks in the list.
 
@@ -156,9 +174,9 @@ Expected outcome:
 ____________________________________________________________
  Here are the matching tasks in your list:
 
- 1.[T][✗] homework
+ 1.[T][0] homework
 
- 2.[D][✗] homework (by: Sep 9 2020 09:00)
+ 2.[D][0] homework (by: Sep 9 2020 09:00)
 
 ____________________________________________________________
 
@@ -173,7 +191,7 @@ Expected outcome:
 ____________________________________________________________
  Tasks due on: 2020-09-09
 
- 1.[D][✗] homework (by: Sep 9 2020 09:00)
+ 1.[D][0] homework (by: Sep 9 2020 09:00)
 
 ____________________________________________________________
 

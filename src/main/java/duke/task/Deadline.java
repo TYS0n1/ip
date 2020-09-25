@@ -43,15 +43,15 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String doneAsciiArt;
+        String doneCharacter;
 
         if (getIsDone() == true) {
-            doneAsciiArt = "✓";
+            doneCharacter = "1";
         } else {
-            doneAsciiArt = "✗";
+            doneCharacter = "0";
         }
 
-        return String.format("[D][%s] %s (by: ", doneAsciiArt, getData()) +
+        return String.format("[D][%s] %s (by: ", doneCharacter, getData()) +
                 dateDue.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + timeDue.toString() + ")";
     }
 }

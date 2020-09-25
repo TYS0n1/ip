@@ -22,14 +22,14 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        String doneAsciiArt;
+        String doneCharacter;
 
         if (getIsDone() == true) {
-            doneAsciiArt = "✓";
+            doneCharacter = "1";
         } else {
-            doneAsciiArt = "✗";
+            doneCharacter = "0";
         }
 
-        return String.format("[T][%s] %s", doneAsciiArt, getData());
+        return String.format("[T][%s] %s", doneCharacter, getData());
     }
 }

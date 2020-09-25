@@ -17,8 +17,8 @@ public class Duke {
     /**
      * Constructor. Initialize storageHandler and ui classes.
      */
-    public Duke(String filePath){
-        storageHandler = new StorageHandler(filePath);
+    public Duke(){
+        storageHandler = new StorageHandler();
         ui = new UserInterface();
     }
 
@@ -43,6 +43,6 @@ public class Duke {
      * @param args command prompt input.
      */
     public static void main(String[] args) {
-        new Duke(null).run();
+        new Duke().run();
     }
 }
