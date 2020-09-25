@@ -43,9 +43,62 @@ Description of feature.
 1. Find tasks on date - "occur {dd/mm/yy}"
 1. Exit program - "bye"
 
-### `list` - Print list of Tasks
+### `todo` - Add Todo item
 
-Print list of Tasks.
+Example of usage: 
+
+`todo homework`
+
+Expected outcome:
+
+____________________________________________________________
+
+ Got it. I've added this task:
+
+   [T][✗] homework
+
+ Now you have 1 tasks in the list.
+
+____________________________________________________________
+
+### `deadline` - Add Deadline item
+
+Example of usage: 
+
+`deadline homework /by 9/9/2020 09:00`
+
+Expected outcome:
+
+____________________________________________________________
+
+ Got it. I've added this task:
+
+   [D][✗] homework (by: Sep 9 2020 09:00)
+
+ Now you have 1 tasks in the list.
+
+____________________________________________________________
+
+### `event` - Add Event item
+
+Example of usage: 
+
+`event party /at 10/12/2020 20:00`
+
+Expected outcome:
+
+____________________________________________________________
+
+ Got it. I've added this task:
+
+   [E][✗] party (at: Dec 10 2020 20:00)
+
+ Now you have 1 tasks in the list.
+
+____________________________________________________________
+
+
+### `list` - Print list of Tasks
 
 Example of usage: 
 
@@ -56,8 +109,85 @@ Expected outcome:
 ____________________________________________________________
  Here are the tasks in your list:
 
- 1.[X][X]XXXXXXXX
- 2.[X][X]XXXXXXXX
+ 1.[D][✗] homework (by: Sep 9 2020 09:00)
+
+ 2.[E][✗] party (at: Dec 10 2020 20:00)
 
 ____________________________________________________________
+
+### `delete` - Delete an task item
+
+Example of usage: 
+
+`delete 1`
+
+Expected outcome:
+
+____________________________________________________________
+ Noted. I've removed this task: 
+
+   [D][✗] homework (by: Sep 9 2020 09:00)
+
+ Now you have 0 tasks in the list.
+
+____________________________________________________________
+
+### `save` - Save tasks to txt file
+
+Example of usage: 
+
+`save`
+
+Expected outcome:
+
+____________________________________________________________
+ Nice! I have saved your list.
+
+____________________________________________________________
+
+### `find` - Find tasks with keyword
+
+Example of usage: 
+
+`find homework`
+
+Expected outcome:
+
+____________________________________________________________
+ Here are the matching tasks in your list:
+
+ 1.[T][✗] homework
+
+ 2.[D][✗] homework (by: Sep 9 2020 09:00)
+
+____________________________________________________________
+
+### `occur` - Find tasks on date
+
+Example of usage: 
+
+`occur 9/9/2020`
+
+Expected outcome:
+
+____________________________________________________________
+ Tasks due on: 2020-09-09
+
+ 1.[D][✗] homework (by: Sep 9 2020 09:00)
+
+____________________________________________________________
+
+### `bye` - Exit program
+
+Example of usage: 
+
+`bye`
+
+Expected outcome:
+
+____________________________________________________________
+ Bye. Hope to see you again soon!
+
+____________________________________________________________
+
 
