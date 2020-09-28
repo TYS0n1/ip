@@ -249,15 +249,15 @@ Use the search bar on your computer to find a txt file called **taskList** to re
 
 
 ### Command Summary
-Feature | Command format
+**Feature** | **Command format**
 ------------ | -------------
-**todo** | `todo DESCRIPTION`
-**deadline** | `deadline DESCRIPTION /by DATE TIME`
-**event** | `event DESCRIPTION /at DATE TIME`
-**list** | `list`
-**done** | `done NUMBER`
-**delete** | `delete NUMBER`
-**save** | `save`
-**find** | `find PHRASE`
-**occur** | `occur DATE`
-**bye** | `bye`
+**todo**|`todo DESCRIPTION`
+**deadline**|`deadline DESCRIPTION /by DATE TIME`
+**event**|`event DESCRIPTION /at DATE TIME`
+**list**|`list`
+**done**|`done NUMBER`
+**delete**|`delete NUMBER`
+**save**|`save`
+**find**|`find PHRASE`
+**occur**|`occur DATE`
+**bye**|`bye`
