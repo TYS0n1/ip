@@ -238,7 +238,7 @@ ____________________________________________________________
  Bye. Hope to see you again soon!
 
 ____________________________________________________________
-
+<br>
 
 ##Frequently Asked Questions
 **Q:** I can't find the txt file containing my saved tasks. <br>
