@@ -15,7 +15,7 @@ public class Messages {
     public static final String DEADLINE_FORMAT = " " + "Invalid deadline declaration\n" +
             " " + "deadline {info} /by {dd/mm/yyyy} {hr:mn}";
     public static final String EVENT_FORMAT = " " + "Invalid event declaration\n" +
-            " " + "event {info} /at {dd/mm/yyyy} {hr:mn)}";
+            " " + "event {info} /at {dd/mm/yyyy} {hr:mn}";
     public static final String OCCUR_FORMAT = " " + "Invalid occur declaration\n" +
             " " + "occur {dd/mm/yyyy}";
     public static final String INVALID_INPUT_MAIN =
