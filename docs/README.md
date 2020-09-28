@@ -227,7 +227,7 @@ Expected outcome:
 
 #### `bye` - Exit program
 
-Closes the program. <br></br>
+Closes the program. <br>
 Command: `bye`
 
 Example of usage: 
