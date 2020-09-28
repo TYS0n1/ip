@@ -18,7 +18,7 @@
 1. Ensure that **Java 11.0.8** is installed on your Computer.
 2. Download the executable jar file [here](https://github.com/TYS0n1/ip/releases).
 3. Copy the directory address of the folder the jar file is downloaded to on your computer.
-4. Start command prompt and go to the directory of the jar file by typing <br></br> 
+4. Start command prompt and go to the directory of the jar file by typing <br>
 `cd ADDRESS_COPIED_IN_STEP_3`.
 5. Start running the jar file by typing `java -jar ip.jar`.
 6. You should see txt file **taskList.txt** appears in the folder. If it does not, type `bye` and repeat step 4 and 5.
