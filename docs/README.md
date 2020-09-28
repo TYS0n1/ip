@@ -1,5 +1,7 @@
-# Duke User Guide
+# Duke Program
+## Duke User Guide
 
+### Table of contents
 * [Quick Start](#quick-start)  
 * [Features](#features)
   * [Add Todo item](#todo---add-a-todo-item)
@@ -14,7 +16,7 @@
 * [FAQ](#frequently-asked-questions)
 * [Command Summary](#command-summary)
 
-## Quick Start
+### Quick Start
 1. Ensure that **Java 11.0.8** is installed on your Computer.
 2. Download the executable jar file [here](https://github.com/TYS0n1/ip/releases).
 3. Copy the directory address of the folder the jar file is downloaded to on your computer.
@@ -23,7 +25,7 @@
 5. Start running the jar file by typing `java -jar ip.jar`.
 6. You should see txt file **taskList.txt** appears in the folder. If it does not, type `bye` and repeat step 4 and 5.
 
-## Features 
+### Features 
 
 >Note on formatting of commands 
 >* Commands written in **UPPERCASE** are parameters to be supplied by you.<br>
@@ -46,7 +48,7 @@
 >your input has to be a number that lies in your task list. <br>
 >eg. your have 4 tasks in your list. The valid numbers you can input are from 1 to 4. 
 
-### `todo` - Add a Todo item
+#### `todo` - Add a Todo item
 
 Adds a task with a simple description. <br>
 Command: `todo DESCRIPTION`
@@ -67,7 +69,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `deadline` - Add a Deadline item
+#### `deadline` - Add a Deadline item
 
 Adds a task with a due date and time. <br>
 Command: `deadline DESCRIPTION /by DATE TIME`
@@ -88,7 +90,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `event` - Add a Event item
+#### `event` - Add a Event item
 
 Adds a task with a due date and time. <br>
 Command : `event DESCRIPTION /at DATE TIME`
@@ -110,7 +112,7 @@ Expected outcome:
 ------------------------------------------------------------<br>
 
 
-### `list` - Print list of Tasks
+#### `list` - Print list of Tasks
 
 Prints out all current tasks. <br>
 Command: `list`
@@ -130,7 +132,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `done` - Mark a task as done
+#### `done` - Mark a task as done
 
 Mark a task from the current list ot tasks as done. <br>
 Command: `done NUMBER`
@@ -148,7 +150,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `delete` - Delete an task item
+#### `delete` - Delete an task item
 
 Delete a task from the current list of tasks. <br>
 Command: `delete NUMBER`
@@ -168,7 +170,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `save` - Save tasks to txt file
+#### `save` - Save tasks to txt file
 
 Save tasks into a txt file. <br>
 **Note:** The program automatically saves changes. <br>
@@ -185,7 +187,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `find` - Find tasks with keyword
+#### `find` - Find tasks with keyword
 
 Based on a keyword you input, the program searches for tasks containing that keyword. <br>
 Command: `find PHRASE`
@@ -205,7 +207,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `occur` - Find tasks on date
+#### `occur` - Find tasks on date
 
 Based on a date you input, the program searches for tasks that fall on that date. <br>
 Command: `occur DATE`
@@ -223,7 +225,7 @@ Expected outcome:
 
 ------------------------------------------------------------<br>
 
-### `bye` - Exit program
+#### `bye` - Exit program
 
 Closes the program. <br></br>
 Command: `bye`
@@ -239,12 +241,14 @@ Expected outcome:
  
 ------------------------------------------------------------<br>
 
-##Frequently Asked Questions
+
+###Frequently Asked Questions
 **Q:** I can't find the txt file containing my saved tasks. <br>
 **A:** You did not run the `cd ADDRESS_OF_JAR_FILE` command in the [Quick Start](#quick-start) section. <br>
 Use the search bar on your computer to find a txt file called **taskList** to retrieve your saved tasks.
 
-## Command Summary
+
+### Command Summary
 Feature | Command format
 ------------ | -------------
 `todo` | `todo DESCRIPTION`
