@@ -235,9 +235,16 @@ Example of usage:
 Expected outcome:
 
 ____________________________________________________________
- Bye. Hope to see you again soon!<br>
+ Bye. Hope to see you again soon!"
 
-____________________________________________________________<br>
+____________________________________________________________
+
+
+
+
+
+
+
 
 
 ##Frequently Asked Questions
