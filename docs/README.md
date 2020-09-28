@@ -6,7 +6,7 @@
   * [Add Deadline item](#deadline---add-a-deadline-item)
   * [Add Event item](#event---add-a-event-item)
   * [Print list of Tasks](#list---print-list-of-tasks)
-  * [Delete an task item](#delete---delete-an-task-item)
+  * [Delete a task item](#delete---delete-an-task-item)
   * [Save tasks to txt file](#save---save-tasks-to-txt-file)
   * [Find tasks with keyword](#find---find-tasks-with-keyword)
   * [Find tasks on date](#occur---find-tasks-on-date)
