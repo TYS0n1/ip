@@ -1,52 +1,55 @@
-# User Guide
+# Duke User Guide
+
+* [Quick Start](#quick-start)  
+* [Features](#features)
+  * [Add Todo item](#todo---add-a-todo-item)
+  * [Add Deadline item](#deadline---add-a-deadline-item)
+  * [Add Event item](#event---add-a-event-item)
+  * [Print list of Tasks](#list---print-list-of-tasks)
+  * [Delete an task item](#delete---delete-an-task-item)
+  * [Save tasks to txt file](#save---save-tasks-to-txt-file)
+  * [Find tasks with keyword](#find---find-tasks-with-keyword)
+  * [Find tasks on date](#occur---find-tasks-on-date)
+  * [Exit program](#bye---exit-program)
+* [FAQ](#frequently-asked-questions)
+* [Command Summary](#command-summary)
+
+## Quick Start
+1. Ensure that **Java 11.0.8** is installed on your Computer.
+2. Download the executable jar file [here](https://github.com/TYS0n1/ip/releases).
+3. Copy the directory address of the folder the jar file is downloaded to on your computer.
+4. Start command prompt and go to the directory of the jar file by typing <br></br> 
+`cd ADDRESS_COPIED_IN_STEP_3`.
+5. Start running the jar file by typing `java -jar ip.jar`.
+6. You should see txt file **taskList.txt** appears in the folder. If it does not, type `bye` and repeat step 4 and 5.
 
 ## Features 
-1. Add Todo item
-1. Add Deadline item
-1. Add Event item
-1. Print list of Tasks
-1. Delete an task item
-1. Save tasks to txt file
-1. Find tasks with keyword
-1. Find tasks on date
-1. Exit program
 
-### Feature 1 
-Description of feature.
-1. Add Todo item
-   1. Adds a task with a simple description. 
-1. Add Deadline item
-   1. Adds a task with a due date and time.
-1. Add Event item
-   1. Adds a task with a due date and time.
-1. Print list of Tasks
-   1. Prints out all current tasks.
-1. Mark a task as done
-   1. Mark a task from the current list ot tasks as done.
-1. Delete an task item
-   1. Delete a task from the current list of tasks.
-1. Save tasks to txt file
-   1. Save tasks into a txt file.
-1. Find tasks with keyword
-   1. Based on a keyword you input, the program searches for tasks containing that keyword.
-1. Find tasks on date
-   1. Based on a date you input, the program searches for tasks that fall on that date.
-1. Exit program
-   1. Closes the program.
+>Note on formatting of commands 
+>* Commands written in **UPPERCASE** are parameters to be supplied by you.<br></br>
+>eg. `todo DESCRIPTION`, `DESCRIPTION` is the information about the todo task supplied by you. 
+>You need not add type the parameter in uppercase. eg `todo homework` is alright.
+>
+>* When a date parameter is to be supplied by you, **DATE**, 
+>your input can be in the either dd/mm/yy format or dd-mm-yy format. <br></br>
+>eg. `event abc /at 06/09/2011 00:00` or `event abc /at 06-09-2011 00:00` <br></br>
+>Also, your date input need not be padded with zeros <br></br>
+>eg. an event entry on the 6th of september 900 AD
+>can be entered as: <br></br>`event abc /at 6/9/900 00:00` or `event abc /at 06/09/0900 00:00` without errors.
+>
+>* When a time parameter is to be supplied by you, **TIME**,
+>your input needs to follow hh:mn format and be in terms 24 hours.
+>eg. an event entry to occur at 1.35pm will be entered as: <br></br>
+>`event abc /at 06/09/2011 13:35`.
+>
+>* When a number parameter is to be supplied by you, **NUMBER**,
+>your input has to be a number that lies in your task list. <br></br>
+>eg. your have 4 tasks in your list. The valid numbers you can input are from 1 to 4. 
 
-## Usage
-1. Add Todo item - "todo {description}"
-1. Add Deadline item - "deadline {description} /by {dd/mm/yy} {hr:mn}"
-1. Add Event item - "event {description} /at {dd/mm/yy} {hr:mn)}"
-1. Print list of Tasks - "list"
-1. Mark a task as done - "done {task number}"
-1. Delete an task item - "delete {task number}"
-1. Save tasks to txt file - "save"
-1. Find tasks with keyword - "find {keyword/phrase}"
-1. Find tasks on date - "occur {dd/mm/yy}"
-1. Exit program - "bye"
+### `todo` - Add a Todo item
 
-### `todo` - Add Todo item
+Adds a task with a simple description. <br></br>
+Command: `todo DESCRIPTION`
 
 Example of usage: 
 
@@ -64,7 +67,10 @@ ____________________________________________________________
 
 ____________________________________________________________
 
-### `deadline` - Add Deadline item
+### `deadline` - Add a Deadline item
+
+Adds a task with a due date and time. <br></br>
+Command: `deadline DESCRIPTION /by DATE TIME`
 
 Example of usage: 
 
@@ -82,7 +88,10 @@ ____________________________________________________________
 
 ____________________________________________________________
 
-### `event` - Add Event item
+### `event` - Add a Event item
+
+Adds a task with a due date and time. <br></br>
+Command : `event DESCRIPTION /at DATE TIME`
 
 Example of usage: 
 
@@ -103,6 +112,9 @@ ____________________________________________________________
 
 ### `list` - Print list of Tasks
 
+Prints out all current tasks. <br></br>
+Command: `list`
+
 Example of usage: 
 
 `list`
@@ -120,6 +132,9 @@ ____________________________________________________________
 
 ### `done` - Mark a task as done
 
+Mark a task from the current list ot tasks as done. <br></br>
+Command: `done NUMBER`
+
 Example of usage: 
 
 `done 1`
@@ -134,6 +149,9 @@ ____________________________________________________________
 ____________________________________________________________
 
 ### `delete` - Delete an task item
+
+Delete a task from the current list of tasks. <br></br>
+Command: `delete NUMBER`
 
 Example of usage: 
 
@@ -152,6 +170,10 @@ ____________________________________________________________
 
 ### `save` - Save tasks to txt file
 
+Save tasks into a txt file. <br></br>
+**Note:** The program automatically saves changes. <br></br>
+Command: `save`
+
 Example of usage: 
 
 `save`
@@ -164,6 +186,9 @@ ____________________________________________________________
 ____________________________________________________________
 
 ### `find` - Find tasks with keyword
+
+Based on a keyword you input, the program searches for tasks containing that keyword. <br></br>
+Command: `find PHRASE`
 
 Example of usage: 
 
@@ -182,6 +207,9 @@ ____________________________________________________________
 
 ### `occur` - Find tasks on date
 
+Based on a date you input, the program searches for tasks that fall on that date. <br></br>
+Command: `occur DATE`
+
 Example of usage: 
 
 `occur 9/9/2020`
@@ -197,6 +225,9 @@ ____________________________________________________________
 
 ### `bye` - Exit program
 
+Closes the program. <br></br>
+Command: `bye`
+
 Example of usage: 
 
 `bye`
@@ -208,4 +239,21 @@ ____________________________________________________________
 
 ____________________________________________________________
 
+##Frequently Asked Questions
+**Q:** I can't find the txt file containing my saved tasks. <br></br>
+**A:** You did not run the `cd ADDRESS_OF_JAR_FILE` command in the [Quick Start](#quick-start) section. <br></br>
+Use the search bar on your computer to find a txt file called **taskList** to retrieve your saved tasks.
 
+## Command Summary
+Feature | Command format
+------------ | -------------
+`todo` | `todo DESCRIPTION`
+`deadline` | `deadline DESCRIPTION /by DATE TIME`
+`event` | `event DESCRIPTION /at DATE TIME`
+`list` | `list`
+`done` | `done NUMBER`
+`delete` | `delete NUMBER`
+`save` | `save`
+`find` | `find PHRASE`
+`occur` | `occur DATE`
+`bye` | `bye`

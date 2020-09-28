@@ -13,11 +13,11 @@ public class Messages {
     public static final String SEARCH_HEADER = " " + "Here are the matching tasks in your list:";
     public static final String OCCUR_HEADER = " " + "Tasks due on: ";
     public static final String DEADLINE_FORMAT = " " + "Invalid deadline declaration\n" +
-            " " + "deadline {info} /by {dd/mm/yy} {hr:mn}";
+            " " + "deadline {info} /by {dd/mm/yyyy} {hr:mn}";
     public static final String EVENT_FORMAT = " " + "Invalid event declaration\n" +
-            " " + "event {info} /at {dd/mm/yy} {hr:mn)}";
+            " " + "event {info} /at {dd/mm/yyyy} {hr:mn)}";
     public static final String OCCUR_FORMAT = " " + "Invalid occur declaration\n" +
-            " " + "occur {dd/mm/yy}";
+            " " + "occur {dd/mm/yyyy}";
     public static final String INVALID_INPUT_MAIN =
             " " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String EMPTY_DONE_INPUT = " " + "☹ OOPS!!! The description of a done cannot be empty.";

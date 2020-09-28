@@ -156,7 +156,7 @@ public class TaskListOperations {
         }
 
         if (formattedDate == null || formattedTime == null) {
-            UserInterface.printMessage(Messages.DEADLINE_FORMAT);
+            UserInterface.printMessage(Messages.EVENT_FORMAT);
             return;
         }
 
@@ -306,7 +306,8 @@ public class TaskListOperations {
                     dateInt[0] = Integer.parseInt(dateString[0]);
                     if(dateInt[0] < 0 && dateInt[0] > 31){
                         return null;
-                    }else if(dateInt[0] > 0 && dateInt[0] < 10){
+                    }else if(dateInt[0] > 0 && dateInt[0] < 10
+                            && (dateString[0].equals("0" + Integer.toString(dateInt[0])) == false)){
                         dateString[0] = "0" + dateString[0];
                     }
                     dateInput = dateInput.substring(indexSeparator + 1, dateInput.length());
@@ -315,7 +316,8 @@ public class TaskListOperations {
                     dateInt[1] = Integer.parseInt(dateString[1]);
                     if (dateInt[1] < 0 && dateInt[1] > 12) {
                         return null;
-                    } else if (dateInt[1] > 0 && dateInt[1] < 10){
+                    } else if (dateInt[1] > 0 && dateInt[1] < 10
+                            && (dateString[1].equals("0" + Integer.toString(dateInt[1])) == false)){
                         dateString[1] = "0" + dateString[1];
                     }
 
@@ -323,11 +325,14 @@ public class TaskListOperations {
                     dateInt[2] = Integer.parseInt(dateString[2]);
                     if (dateInt[2] < 0 && dateInt[2] > 9999) {
                         return null;
-                    } else if (dateInt[2] > 0 && dateInt[2] < 10){
+                    } else if (dateInt[2] > 0 && dateInt[2] < 10
+                            && (dateString[2].equals("000" + Integer.toString(dateInt[2])) == false)){
                         dateString[2] = "000" + dateString[2];
-                    } else if (dateInt[2] >= 10 && dateInt[2] < 100){
+                    } else if (dateInt[2] >= 10 && dateInt[2] < 100
+                            && (dateString[2].equals("00" + Integer.toString(dateInt[2])) == false)){
                         dateString[2] = "00" + dateString[2];
-                    } else if (dateInt[2] >= 100 && dateInt[2] < 1000){
+                    } else if (dateInt[2] >= 100 && dateInt[2] < 1000
+                            && (dateString[2].equals("0" + Integer.toString(dateInt[2])) == false)){
                         dateString[2] = "0" + dateString[2];
                     }
                 }
