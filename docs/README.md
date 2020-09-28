@@ -245,7 +245,7 @@ Expected outcome:
 ### Frequently Asked Questions
 **Q:** I can't find the txt file containing my saved tasks. <br>
 **A:** You did not run the `cd ADDRESS_OF_JAR_FILE` command in the [Quick Start](#quick-start) section. <br>
-Use the search bar on your computer to find a txt file called **taskList** to retrieve your saved tasks.
+Use the search bar on your computer to find a txt file called **taskList** to retrieve your saved tasks.<br>
 
 
 ### Command Summary
