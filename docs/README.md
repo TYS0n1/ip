@@ -251,13 +251,13 @@ Use the search bar on your computer to find a txt file called **taskList** to re
 ### Command Summary
 **Feature** | **Command format**
 ------------ | -------------
-**todo**|`todo DESCRIPTION`
-**deadline**|`deadline DESCRIPTION /by DATE TIME`
-**event**|`event DESCRIPTION /at DATE TIME`
+**todo**|`todo DESCRIPTION`<br> eg. `todo homework`
+**deadline**|`deadline DESCRIPTION /by DATE TIME`<br> eg. `deadline homework /by 08/11/2021 12:00`
+**event**|`event DESCRIPTION /at DATE TIME`<br> eg. `event lesson /at 08/11/2021 12:00`
 **list**|`list`
-**done**|`done NUMBER`
-**delete**|`delete NUMBER`
+**done**|`done NUMBER`<br> eg. `done 1`
+**delete**|`delete NUMBER`<br> eg. `delete 1`
 **save**|`save`
-**find**|`find PHRASE`
-**occur**|`occur DATE`
+**find**|`find PHRASE`<br> eg. `find homework`
+**occur**|`occur DATE`<br> eg. `occur 02/11/2021`
 **bye**|`bye`
