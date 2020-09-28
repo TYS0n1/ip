@@ -170,7 +170,7 @@ ____________________________________________________________
 
 ### `save` - Save tasks to txt file
 
-Save tasks into a txt file. <br></br>
+Save tasks into a txt file. <br>
 **Note:** The program automatically saves changes. <br>
 Command: `save`
 
