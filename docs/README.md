@@ -249,15 +249,15 @@ Use the search bar on your computer to find a txt file called **taskList** to re
 
 
 ### Command Summary
-**Feature** | **Command format**
+**Action** | **Format, Examples**
 ------------ | -------------
-**todo**|`todo DESCRIPTION`<br> eg. `todo homework`
-**deadline**|`deadline DESCRIPTION /by DATE TIME`<br> eg. `deadline homework /by 08/11/2021 12:00`
-**event**|`event DESCRIPTION /at DATE TIME`<br> eg. `event lesson /at 08/11/2021 12:00`
+**todo**|`todo DESCRIPTION` <br>example: `todo homework`
+**deadline**|`deadline DESCRIPTION /by DATE TIME` <br>example: `deadline homework /by 02/09/2020 2359`
+**event**|`event DESCRIPTION /at DATE TIME`<br>example: `event birthday /at 06/11/2011 1200`
 **list**|`list`
-**done**|`done NUMBER`<br> eg. `done 1`
-**delete**|`delete NUMBER`<br> eg. `delete 1`
+**done**|`done NUMBER` <br>example: `done 1`
+**delete**|`delete NUMBER` <br>example: `delete 2`
 **save**|`save`
-**find**|`find PHRASE`<br> eg. `find homework`
-**occur**|`occur DATE`<br> eg. `occur 02/11/2021`
-**bye**|`bye`
+**find**|`find PHRASE`<br>example: `find homework`
+**occur**|`occur DATE`<br>example: `occur 06/11/2011`
+**exit**|`bye`
