@@ -8,7 +8,7 @@ import static duke.parser.Parser.parseCommand;
 
 /**
  * Main class for the Duke Program. Initializes peripheral class during
- * setup. Then runs program. 
+ * setup. Then runs program.
  */
 public class Duke {
     private StorageHandler storageHandler;
