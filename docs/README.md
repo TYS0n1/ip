@@ -26,29 +26,29 @@
 ## Features 
 
 >Note on formatting of commands 
->* Commands written in **UPPERCASE** are parameters to be supplied by you.<br></br>
+>* Commands written in **UPPERCASE** are parameters to be supplied by you.<br>
 >eg. `todo DESCRIPTION`, `DESCRIPTION` is the information about the todo task supplied by you. 
 >You need not add type the parameter in uppercase. eg `todo homework` is alright.
 >
 >* When a date parameter is to be supplied by you, **DATE**, 
->your input can be in the either dd/mm/yy format or dd-mm-yy format. <br></br>
->eg. `event abc /at 06/09/2011 00:00` or `event abc /at 06-09-2011 00:00` <br></br>
->Also, your date input need not be padded with zeros <br></br>
+>your input can be in the either dd/mm/yy format or dd-mm-yy format. <br>
+>eg. `event abc /at 06/09/2011 00:00` or `event abc /at 06-09-2011 00:00` <br>
+>Also, your date input need not be padded with zeros <br>
 >eg. an event entry on the 6th of september 900 AD
->can be entered as: <br></br>`event abc /at 6/9/900 00:00` or `event abc /at 06/09/0900 00:00` without errors.
+>can be entered as: <br>`event abc /at 6/9/900 00:00` or `event abc /at 06/09/0900 00:00` without errors.
 >
 >* When a time parameter is to be supplied by you, **TIME**,
 >your input needs to follow hh:mn format and be in terms 24 hours.
->eg. an event entry to occur at 1.35pm will be entered as: <br></br>
+>eg. an event entry to occur at 1.35pm will be entered as: <br>
 >`event abc /at 06/09/2011 13:35`.
 >
 >* When a number parameter is to be supplied by you, **NUMBER**,
->your input has to be a number that lies in your task list. <br></br>
+>your input has to be a number that lies in your task list. <br>
 >eg. your have 4 tasks in your list. The valid numbers you can input are from 1 to 4. 
 
 ### `todo` - Add a Todo item
 
-Adds a task with a simple description. <br></br>
+Adds a task with a simple description. <br>
 Command: `todo DESCRIPTION`
 
 Example of usage: 
@@ -69,7 +69,7 @@ ____________________________________________________________
 
 ### `deadline` - Add a Deadline item
 
-Adds a task with a due date and time. <br></br>
+Adds a task with a due date and time. <br>
 Command: `deadline DESCRIPTION /by DATE TIME`
 
 Example of usage: 
@@ -90,7 +90,7 @@ ____________________________________________________________
 
 ### `event` - Add a Event item
 
-Adds a task with a due date and time. <br></br>
+Adds a task with a due date and time. <br>
 Command : `event DESCRIPTION /at DATE TIME`
 
 Example of usage: 
@@ -112,7 +112,7 @@ ____________________________________________________________
 
 ### `list` - Print list of Tasks
 
-Prints out all current tasks. <br></br>
+Prints out all current tasks. <br>
 Command: `list`
 
 Example of usage: 
@@ -132,7 +132,7 @@ ____________________________________________________________
 
 ### `done` - Mark a task as done
 
-Mark a task from the current list ot tasks as done. <br></br>
+Mark a task from the current list ot tasks as done. <br>
 Command: `done NUMBER`
 
 Example of usage: 
@@ -150,7 +150,7 @@ ____________________________________________________________
 
 ### `delete` - Delete an task item
 
-Delete a task from the current list of tasks. <br></br>
+Delete a task from the current list of tasks. <br>
 Command: `delete NUMBER`
 
 Example of usage: 
@@ -171,7 +171,7 @@ ____________________________________________________________
 ### `save` - Save tasks to txt file
 
 Save tasks into a txt file. <br></br>
-**Note:** The program automatically saves changes. <br></br>
+**Note:** The program automatically saves changes. <br>
 Command: `save`
 
 Example of usage: 
@@ -187,7 +187,7 @@ ____________________________________________________________
 
 ### `find` - Find tasks with keyword
 
-Based on a keyword you input, the program searches for tasks containing that keyword. <br></br>
+Based on a keyword you input, the program searches for tasks containing that keyword. <br>
 Command: `find PHRASE`
 
 Example of usage: 
@@ -207,7 +207,7 @@ ____________________________________________________________
 
 ### `occur` - Find tasks on date
 
-Based on a date you input, the program searches for tasks that fall on that date. <br></br>
+Based on a date you input, the program searches for tasks that fall on that date. <br>
 Command: `occur DATE`
 
 Example of usage: 
@@ -240,8 +240,8 @@ ____________________________________________________________
 ____________________________________________________________
 
 ##Frequently Asked Questions
-**Q:** I can't find the txt file containing my saved tasks. <br></br>
-**A:** You did not run the `cd ADDRESS_OF_JAR_FILE` command in the [Quick Start](#quick-start) section. <br></br>
+**Q:** I can't find the txt file containing my saved tasks. <br>
+**A:** You did not run the `cd ADDRESS_OF_JAR_FILE` command in the [Quick Start](#quick-start) section. <br>
 Use the search bar on your computer to find a txt file called **taskList** to retrieve your saved tasks.
 
 ## Command Summary
